@@ -1,0 +1,1256 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NGOC HIEN · ThanhPhat Visual Archive</title>
+<!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#FFF7FA',
+              deep: '#FFF0F5',
+              plum: '#FCE7F3',
+              card: 'rgba(255, 255, 255, 0.85)',
+              border: 'rgba(244, 114, 182, 0.35)',
+              pink: '#F472B6',
+              hotpink: '#EC4899',
+              rose: '#DB2777',
+              accent: '#BE185D',
+              darkrose: '#831843',
+              plumdark: '#701A75',
+              cream: '#FFFFFF'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Balletcore CSS Styles -->
+<style data-purpose="ambient-decor">
+    body {
+      background: linear-gradient(180deg, #FFF7FA 0%, #FDF2F8 20%, #FCE7F3 50%, #FFF0F5 80%, #FDF2F8 100%);
+      color: #831843;
+      overflow-x: hidden;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Ambient Silk Glowing Background Orbs */
+    .ambient-glow {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 9999px;
+      filter: blur(120px);
+      z-index: 0;
+      opacity: 0.55;
+      transition: opacity 1s ease;
+    }
+    
+    .glow-orb-1 {
+      top: -10vw;
+      left: -10vw;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(244, 114, 182, 0.32) 0%, rgba(251, 207, 232, 0.4) 60%, transparent 100%);
+    }
+
+    .glow-orb-2 {
+      top: 35vh;
+      right: -15vw;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(244, 114, 182, 0.25) 0%, rgba(253, 242, 248, 0.5) 70%, transparent 100%);
+    }
+
+    .glow-orb-3 {
+      bottom: -15vh;
+      left: 20vw;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, rgba(254, 226, 226, 0.4) 65%, transparent 100%);
+    }
+
+    /* Shimmering Pearlescent Glassmorphic borders & cards */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(244, 114, 182, 0.35);
+      box-shadow: 0 16px 36px -10px rgba(244, 114, 182, 0.18), inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .glass-panel-elevated {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(244, 114, 182, 0.4);
+      box-shadow: 0 20px 45px -8px rgba(244, 114, 182, 0.22), inset 0 1px 2px rgba(255, 255, 255, 1);
+    }
+
+    /* Starlight Twinkle Animation */
+    @keyframes sparkleTwinkle {
+      0%, 100% { opacity: 0.35; transform: scale(0.85) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.2) rotate(45deg); filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.8)); }
+    }
+
+    .sparkle-icon {
+      animation: sparkleTwinkle 3.6s infinite ease-in-out;
+    }
+  </style>
+<style data-purpose="wing-and-spotlight-layout">
+    /* Subtle spotlight dimming for other gallery cards when one is hovered */
+    .gallery-container:hover .wing-card {
+      opacity: 0.72;
+      filter: saturate(0.9) brightness(0.95);
+      transform: scale(0.98);
+    }
+
+    .gallery-container .wing-card:hover {
+      opacity: 1 !important;
+      filter: saturate(1.1) brightness(1.02) drop-shadow(0 15px 30px rgba(244, 114, 182, 0.45)) !important;
+      transform: translateY(-8px) scale(1.03) !important;
+      z-index: 40 !important;
+    }
+
+    .wing-card {
+      transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Text shimmering gradient */
+    .shimmer-text {
+      background: linear-gradient(135deg, #831843 0%, #DB2777 50%, #F472B6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+<style data-purpose="hero-editorial-collage">
+    /* Scroll-driven Hero Asymmetric Collage Styling */
+    .hero-scroll-track {
+      height: 200vh;
+      position: relative;
+    }
+
+    .hero-sticky-stage {
+      position: sticky;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #FFF7FA;
+    }
+
+    .hero-collage-grid {
+      display: grid;
+      grid-template-columns: 24% 26% 24% 26%;
+      grid-template-rows: 100%;
+      gap: 6px;
+      width: 100vw;
+      height: 100vh;
+      background-color: #FCE7F3;
+      transition: transform 0.1s linear;
+    }
+
+    .hero-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      will-change: transform;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-slot {
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+      background-color: #FDF2F8;
+    }
+
+    .hero-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: translate(var(--tx, 0%), var(--ty, 0%)) scale(var(--scale, 1));
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s ease;
+      filter: brightness(0.96) contrast(1.02);
+    }
+
+    .hero-slot:hover img {
+      transform: translate(var(--tx, 0%), var(--ty, 0%)) scale(calc(var(--scale, 1) * 1.04));
+      filter: brightness(1.04) contrast(1.05);
+    }
+
+    /* Borderless Circular Clip-Path Reveal (wy.html style) */
+    .hero-frosted-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(255, 247, 250, 0.82) 0%, rgba(253, 242, 248, 0.55) 45%, rgba(252, 231, 243, 0.22) 100%);
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      clip-path: circle(var(--reveal-r, 0%) at 50% 50%);
+      transition: clip-path 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      will-change: clip-path;
+      z-index: 30;
+    }
+
+    .hero-wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 11vw, 9.5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 1.5rem;
+      margin: 0;
+      filter: drop-shadow(0 10px 32px rgba(244, 114, 182, 0.35));
+      will-change: transform, opacity;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    }
+
+    /* Ambient Curtain Dimmer Overlay when revealed */
+    .hero-curtain-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255, 240, 245, 0.35) 0%, rgba(253, 230, 242, 0.55) 100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 20;
+    }
+  </style>
+<style data-purpose="carousel-3d-styles">
+    /* 3D Carousel Cylinder Engine */
+    .carousel-stage {
+      perspective: 1200px;
+      perspective-origin: 50% 45%;
+    }
+
+    .carousel-cylinder {
+      width: 240px;
+      height: 330px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out;
+    }
+
+    .carousel-item-3d {
+      position: absolute;
+      width: 240px;
+      height: 330px;
+      left: 0;
+      top: 0;
+      border-radius: 1.25rem;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 12px 32px rgba(244, 114, 182, 0.25), 0 2px 6px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      backface-visibility: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .carousel-item-3d:hover {
+      border-color: #F472B6;
+      box-shadow: 0 0 35px rgba(244, 114, 182, 0.6), 0 8px 24px rgba(236, 72, 153, 0.3);
+    }
+
+    /* Reflective Floor */
+    .floor-reflection {
+      background: radial-gradient(ellipse at 50% 50%, rgba(244, 114, 182, 0.35) 0%, rgba(253, 242, 248, 0.7) 60%, transparent 100%);
+      transform: rotateX(85deg) translateZ(-60px);
+    }
+  </style>
+<!-- BEGIN: Sakura Falling Petals Styles -->
+<style data-purpose="sakura-petals-falling-effect">
+    #sakura-falling-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 15;
+      overflow: hidden;
+    }
+
+    .sakura-petal-node {
+      position: absolute;
+      top: -60px;
+      pointer-events: none;
+      will-change: transform, opacity;
+      animation-name: sakuraFall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      perspective: 800px;
+      transform-style: preserve-3d;
+    }
+
+    .sakura-petal-leaf {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 60% 0 60% 0 / 70% 0 70% 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, #fbcfe8 25%, #f472b6 75%, #db2777 100%);
+      box-shadow: 0 2px 6px -1px rgba(244, 114, 182, 0.35), inset 0 0 3px rgba(255, 255, 255, 0.85);
+      border: 0.5px solid rgba(255, 255, 255, 0.6);
+      position: relative;
+      animation-name: sakuraSway3D;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      transform-origin: center center;
+    }
+
+    /* Subtle vein/texture for cherry blossom petal */
+    .sakura-petal-leaf::after {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 15%;
+      width: 70%;
+      height: 70%;
+      border-radius: 50% 0 50% 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.45);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes sakuraFall {
+      0% {
+        top: -60px;
+        opacity: 0;
+      }
+      8% {
+        opacity: var(--petal-max-opacity, 0.85);
+      }
+      90% {
+        opacity: var(--petal-max-opacity, 0.85);
+      }
+      100% {
+        top: 108vh;
+        opacity: 0;
+      }
+    }
+
+    @keyframes sakuraSway3D {
+      0% {
+        transform: translateX(0px) rotate(0deg) rotateY(0deg) rotateX(0deg);
+      }
+      25% {
+        transform: translateX(var(--sway-x, 26px)) rotate(45deg) rotateY(70deg) rotateX(25deg);
+      }
+      50% {
+        transform: translateX(0px) rotate(90deg) rotateY(150deg) rotateX(45deg);
+      }
+      75% {
+        transform: translateX(calc(-1 * var(--sway-x, 26px))) rotate(135deg) rotateY(240deg) rotateX(25deg);
+      }
+      100% {
+        transform: translateX(0px) rotate(180deg) rotateY(360deg) rotateX(0deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sakura-petal-node {
+        animation: none !important;
+        display: none !important;
+      }
+    }
+  </style>
+<!-- END: Sakura Falling Petals Styles -->
+<!-- BEGIN: Magic Cursor Sparkle Trail Styles -->
+<style data-purpose="magic-cursor-sparkle-trail">
+    #cursor-sparkle-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
+
+    .cursor-sparkle-particle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      will-change: transform, opacity;
+      transform: translate(-50%, -50%);
+      animation: sparkleDisperse 0.85s cubic-bezier(0.12, 0.8, 0.32, 1) forwards;
+    }
+
+    @keyframes sparkleDisperse {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate(0, 0) scale(var(--sparkle-scale-start, 1)) rotate(0deg);
+      }
+      50% {
+        opacity: 0.95;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate(var(--sparkle-move-x, 0px), var(--sparkle-move-y, -25px)) scale(0) rotate(var(--sparkle-rot, 90deg));
+      }
+    }
+
+    .sparkle-shape-star {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--sparkle-size, 16px);
+      line-height: 1;
+      color: var(--sparkle-color, #f472b6);
+      filter: drop-shadow(0 0 5px var(--sparkle-color, #f472b6)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
+      user-select: none;
+    }
+
+    .sparkle-shape-dot {
+      display: block;
+      width: var(--sparkle-size, 8px);
+      height: var(--sparkle-size, 8px);
+      border-radius: 9999px;
+      background-color: var(--sparkle-color, #ffffff);
+      box-shadow: 0 0 8px 2px var(--sparkle-glow, rgba(244, 114, 182, 0.8)), 0 0 14px 4px rgba(255, 255, 255, 0.7);
+    }
+
+    .sparkle-shape-diamond {
+      width: var(--sparkle-size, 10px);
+      height: var(--sparkle-size, 10px);
+      background-color: var(--sparkle-color, #fbcfe8);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      box-shadow: 0 0 7px 2px var(--sparkle-color, #f472b6);
+      filter: drop-shadow(0 0 6px var(--sparkle-color, #f472b6));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #cursor-sparkle-container {
+        display: none !important;
+      }
+    }
+  </style>
+<!-- END: Magic Cursor Sparkle Trail Styles -->
+<!-- END: Custom Balletcore CSS Styles -->
+</head>
+<body class="selection:bg-pink-300 selection:text-pink-900">
+<!-- Ambient background glow orbs -->
+<div aria-hidden="true" class="ambient-glow glow-orb-1"></div>
+<div aria-hidden="true" class="ambient-glow glow-orb-2"></div>
+<div aria-hidden="true" class="ambient-glow glow-orb-3"></div>
+<!-- BEGIN: Sakura Falling Petals Background Overlay -->
+<div aria-hidden="true" data-purpose="sakura-falling-petals-overlay" id="sakura-falling-container"></div>
+<!-- END: Sakura Falling Petals Background Overlay -->
+<!-- BEGIN: Magic Cursor Sparkle Trail Overlay -->
+<div aria-hidden="true" data-purpose="magic-cursor-sparkle-trail-container" id="cursor-sparkle-container"></div>
+<!-- END: Magic Cursor Sparkle Trail Overlay -->
+<!-- BEGIN: Minimal Floating Transparent Navbar -->
+<header class="fixed top-0 left-0 right-0 z-50 px-6 sm:px-12 py-5 transition-all duration-300 backdrop-blur-md bg-white/60 border-b border-pink-200/50 shadow-sm shadow-pink-100/50" id="main-nav-bar">
+<div class="w-full flex items-center justify-between">
+<!-- Left Wordmark Brand -->
+<a class="flex items-center gap-2 group cursor-pointer" data-purpose="brand-logo" href="#hero">
+<span class="sparkle-icon text-brand-pink text-lg font-bold">✦</span>
+<span class="font-serif tracking-[0.25em] text-xl sm:text-2xl font-bold uppercase text-brand-darkrose group-hover:text-brand-hotpink transition-colors">
+      THANHPHAT
+    </span>
+</a>
+<!-- Right Navigation links -->
+<nav class="flex items-center gap-7 sm:gap-9 text-xs sm:text-sm font-semibold tracking-wider text-brand-plumdark" data-purpose="primary-navigation">
+
+
+
+</nav>
+</div>
+</header>
+<!-- END: Minimal Floating Transparent Navbar -->
+<main>
+<!-- BEGIN: EditorialScrollHeroSection (200vh Scroll-Driven Curtain Reveal) -->
+<section class="hero-scroll-track" data-purpose="asymmetric-editorial-collage-hero" id="hero">
+<div class="hero-sticky-stage" id="hero-sticky-stage">
+<!-- Full-Bleed 4-Column Asymmetric Photo Collage Grid -->
+<div class="hero-collage-grid" id="hero-collage-grid">
+<!-- COLUMN 1: ~70% Tall vertical portrait stacked above ~30% cropped portrait -->
+<div class="hero-col hero-col-left" id="hero-col-1">
+<div class="hero-slot h-[70%] shrink-0">
+<img alt="Sân thượng nắng hồng thơ mộng" class="w-full h-full object-cover object-center" data-slot="1" id="hero-slot-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTHel9g_OiG-F5equFiiHXZ5beJJADSyc1Ocmho2qu4eDPwfq0A_JZC-opEiE6S6NkDSFmpN2a_hUOK3ZLAXWRWbyJS-BkNgyKs-CIHK9Vl3_ItVXZbNqztiDcNeP67DAmb4ruKmHKfot5qK7ihGSrpfEga6wDrcBHgkBnpWVXnYYGPvQd6cnJ7F6z8_NYLbebFI9ggcPDHYgcaU-LHFIx1vgfKmguaYlBC5RGCtjiAZ8qnv0AjVCAMw">
+</div>
+<div class="hero-slot flex-1">
+<img alt="Selfie cận cảnh ngọt ngào" class="w-full h-full object-cover object-[center_20%]" data-slot="2" id="hero-slot-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTMGUQWPDxW8p7r3MdF5Q2HMQt1GfIG-c3jEeB27-DIcQ-CR0u5gVnvxNhoa6ZDi9IIu1Yiv-_zucE-mn_arsMauh7-j_ixnv-IeGEe3RlhMI4eR9Zt0j4_rlcwjwfFOi0_OWk4zWRb2L4wxAyIFBRlPOT0kbo6a3pWsyJDxqIUeBC6mkLmuKZfxjUMHYgz7OdN3yIxjrIGvXftnv5cPAtrDKz_8f0sKd8PmwJG122pDHaluqZsBjSkg">
+</div>
+</div>
+<!-- COLUMN 2: ~32% Horizontal detail stacked above ~58% tall vertical and bottom peek -->
+<div class="hero-col hero-col-left" id="hero-col-2">
+<div class="hero-slot h-[32%] shrink-0">
+<img alt="Phong cách dạo phố cà phê cổ điển" class="w-full h-full object-cover object-center" data-slot="3" id="hero-slot-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwDViPgGLzkECLQNXVAtOrCti1rieKjzmSCV45N45coWNfGkN5boEJaOjVjVvRfbI5tapCGRanipthNZEVXad7klf3UQRHrgUhv57IqVuA4MfP66Vat3UkzpsBhMgAFVvwmK6HBcoRn3AmqfqSY0V6eVONO0wnSWJdeGCX5wOyhNQamPIeumTSNISdhUA_IN1RJj3CW2uzZYl41Z_ixnak--6JuKVOzZaKoeqmA7qif-9Wwkmh16moAg">
+</div>
+<div class="hero-slot flex-1">
+<img alt="Duyên dáng phong cách nữ sinh thanh lịch" class="w-full h-full object-cover object-center" data-slot="4" id="hero-slot-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARzxagjwXAiDLWXiQ7cfrD2DQdOgyLVDALuhejAnkzfA5MNuVFSEJ7THOgq6t2W4jVd1lZR-7lkwPdGAY-j8AZXBiGwZBkvYf4ovuLL2nM9DFBEAVnXzV7_vXtCltKTEfeb5eVIgeeoxU6KdzHXySuZqP8bOfstaQXj70MMhX8zGTm5dIr7OZUyl-MPagyZSWkbXHWY1VVa2p6kSsg01Q6_KtuhXsU0Iqor9pLw-E3V7u60Cl6n3E0FQ">
+</div>
+</div>
+<!-- COLUMN 3: ~34% top mirror selfie stacked above ~66% dreamy vertical portrait -->
+<div class="hero-col hero-col-right" id="hero-col-3">
+<div class="hero-slot h-[34%] shrink-0">
+<img alt="Selfie máy ảnh hồng hoài niệm" class="w-full h-full object-cover object-[44%_18%]" data-slot="5" id="hero-slot-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMwy3tU1Jfv3r-3CeJkdpmOeq2_KL_S6SsI31IXl6bcc14jblDIWbc9DbjwIhvAb6ziyTf7ct1KF-j_WPRxON05nhLxqwe_40IFWbyl71GnjcHZr926jq0z_Ri57xmcxNv9px6TEgIAP5uohkT2wlg0Cwo-vIpGivQR0Td0NXBXc_EUcnuNn-Qd5vcRBhuurw6xOUni_MJfeTeu8iS7IwNHO4Tvbw6ZsqhmEWOx8GaPDTKcbzo1oNrIg" style="--tx: 5%; --ty: 4%; --scale: 1.14;">
+</div>
+<div class="hero-slot flex-1">
+<img alt="Nét cá tính trước background ấn tượng" class="w-full h-full object-cover object-[52%_80%]" data-slot="6" id="hero-slot-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd4t-LMTQQSaoEzqsGyis7excs3_KQMeVWJ5rDRKUOtLf2Y5ClkT3pkHtS8xcc3JUupo-d0uWucwBnK1J2f9EnlJHSfPcNNKGjpEG2fsu1snuPVc9CunGakTJSEyC0tr8xOSqy0dgKknGgRW_CD3nl7626n4XZxzuDQoXvWQa2ziHBMyzkKo6K2UrNG-jiilg9bm9EbHEHpr-E0uYmpldxocWrtttvmgXAXj076zyodCJ0iekKq1ni2w" style="--tx: -2%; --ty: -9%; --scale: 1.24;">
+</div>
+</div>
+<!-- COLUMN 4: ~45% top coat/bag portrait stacked above ~55% selfie -->
+<div class="hero-col hero-col-right" id="hero-col-4">
+<div class="hero-slot h-[45%] shrink-0">
+<img alt="Dừng chân bên bậc thềm đá cổ kính" class="w-full h-full object-cover object-center" data-slot="7" id="hero-slot-7" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATaOVPBjYkOGVDHmwNEwjPTXh1XE2h7GJ3oRGOuGOYeeM3xi6bfieqNz12Ix08u603AIETFp-dMUc9JfMRx5nzuexFR6Eaf2m1HSoCR3smRWlMnIWLgoYPVB4PhxB3yNkimrwU7hG4SoYgp-zRJZC-eFhGAzOSStDgtfN5goIm9x0ng4PGiw8CsSvaZalpvgV4RFBaoyv6aAT1rAnWblMf8QN8XZTlp-T83gDzLVVy6vRJT0NPEQKpuA">
+</div>
+<div class="hero-slot flex-1">
+<img alt="Ngoc Hien selfie dễ thương trong xe" class="w-full h-full object-cover object-center" data-slot="8" id="hero-slot-8" src="hero-slot-8.jpg">
+</div>
+</div>
+</div>
+<!-- Ambient Curtain Overlay during center reveal -->
+<div class="hero-curtain-overlay" id="hero-curtain-overlay"></div>
+<!-- Borderless Circular-Reveal Wordmark (Scroll-revealed, wy.html style) -->
+<div class="hero-frosted-center" id="hero-frosted-card">
+<h1 class="hero-wordmark shimmer-text" data-purpose="hero-title" id="hero-wordmark">
+        NGOC HIEN
+      </h1>
+</div>
+<!-- Floating Mini-Controller Preview Pill (Bottom-Right Stage) -->
+<div class="absolute bottom-6 right-6 z-40 hidden sm:flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/90 backdrop-blur-xl border border-pink-300 shadow-xl text-xs text-brand-plumdark" data-purpose="hero-reveal-preview-controls">
+<button class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-100 hover:bg-pink-200 text-brand-darkrose text-[11px] font-bold tracking-wider uppercase transition-colors" id="hero-curtain-toggle-btn">
+<span id="hero-curtain-icon">◫</span>
+<span id="hero-curtain-label">Mở rèm</span>
+</button>
+<div class="flex items-center gap-2 pl-2 border-l border-pink-200">
+<span class="text-[10px] font-mono text-brand-plumdark/80 font-bold uppercase">Độ mở:</span>
+<input class="w-16 accent-pink-500 bg-pink-100 h-1.5 rounded-lg cursor-pointer" id="hero-curtain-slider" max="100" min="0" type="range" value="0">
+</div>
+</div>
+<!-- Floating Scroll Indicator on Stage when at top -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center gap-1.5 transition-opacity duration-300" id="hero-initial-scroll-cue">
+<span class="text-[10px] font-mono tracking-widest text-brand-plumdark/80 uppercase font-semibold">CUỘN XUỐNG ĐỂ KHÁM PHÁ</span>
+<div class="w-4 h-7 rounded-full border border-pink-400/50 flex justify-center pt-1 bg-white/40">
+<div class="w-1 h-1.5 rounded-full bg-pink-500 animate-bounce"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: EditorialScrollHeroSection -->
+<!-- BEGIN: ButterflyWings13GallerySection -->
+<section class="relative py-28 px-4 sm:px-6 lg:px-10 z-10" data-purpose="thirteen-photo-butterfly-constellation" id="thu-vien">
+<!-- Section Header -->
+<div class="max-w-4xl mx-auto text-center mb-16">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-100/90 border border-brand-pink/50 text-xs text-brand-darkrose font-bold uppercase tracking-widest mb-3 shadow-sm">
+<span>✦ 13 ARCHIVES · BƯỚM ĐÊM HOÀNG GIA ✦</span>
+</div>
+<h2 class="font-serif text-4xl sm:text-6xl font-bold text-brand-darkrose tracking-wide mb-4">
+          THƯ VIỆN CÁNH BƯỚM
+        </h2>
+
+</div>
+<!-- Symmetrical Butterfly Wings Grid Formation Container -->
+<div class="max-w-7xl mx-auto gallery-container">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6 items-center">
+<!-- ================= LEFT WING: 6 ARCHIVE CARDS ================= -->
+<div class="md:col-span-4 flex flex-col gap-5">
+<!-- Wing Top Pair: #02 & #03 -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Card #02 -->
+<div class="wing-card group relative h-64 rounded-2xl overflow-hidden glass-panel border border-brand-border cursor-pointer transform -rotate-2" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBEcveTz_BudgnALr6Az0g70yl4vsJtVgwek98-8Ppl285wrd-3fxzDAUK3lR7GNqImuR5IYnrbde1IzSJ9VfTrlU-Of3dDYMnplUg-M7UU0O2_JcqRtTLsALMfPboHmNs9E1bugAkAonrn17fzoJFPJoC2e192uRVxuRauuGdAwtOtxIhqOvrgaNFYIy4clafQPBIidmBsSEv7ZhZSRM49vxekqfqywioXyVdYFWMURE6bOkdRN8XnJA', '#02 · GIÁNG SINH ẤM ÁP', 'Khoảnh khắc Giáng sinh ấm áp, ngọt ngào bên chú gấu tuyết và ánh đèn lung linh.')">
+<img alt="Giáng sinh ấm áp" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEcveTz_BudgnALr6Az0g70yl4vsJtVgwek98-8Ppl285wrd-3fxzDAUK3lR7GNqImuR5IYnrbde1IzSJ9VfTrlU-Of3dDYMnplUg-M7UU0O2_JcqRtTLsALMfPboHmNs9E1bugAkAonrn17fzoJFPJoC2e192uRVxuRauuGdAwtOtxIhqOvrgaNFYIy4clafQPBIidmBsSEv7ZhZSRM49vxekqfqywioXyVdYFWMURE6bOkdRN8XnJA">
+<div class="absolute inset-0 bg-gradient-to-t from-pink-950/75 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+<div>
+<span class="text-[10px] tracking-wider font-mono text-pink-200 uppercase font-bold">Archive #02</span>
+<h3 class="text-xs font-semibold text-white">Giáng sinh an lành</h3>
+</div>
+<span class="w-6 h-6 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center text-xs text-white">✦</span>
+</div>
+</div>
+<!-- Card #03 -->
+<div class="wing-card group relative h-64 rounded-2xl overflow-hidden glass-panel border border-brand-border cursor-pointer transform rotate-1" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAEGSk--Jl7kgkYXz56kDr8eQGlRXiqgvu7WJwSU6eudn97GIfMSiPyveXi5LjGTWGZmBOROVzFqnjKXdWWqxl3EDpNg7FahRrvRfLyu8rd7Z97qSVKs3sWOb2DXaO7hauge2z9XzLdiVekULHfe-G8ueGeoPYwN-xVIReqIfYnh-6zdKMV5Jv6Hd70u0OU4bplXGStowrVMY3fZ-XGuqZrzOkisQl5g43ne9tSo_SeCAX_xY-OSFYk4g', '#03 · QUÁN CAFE NẮNG ẤM', 'Góc quán nhỏ ngập tràn ánh nắng buổi sớm cùng hương vị bánh ngọt dịu nhẹ.')">
+<img alt="Quán cafe nắng ấm" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEGSk--Jl7kgkYXz56kDr8eQGlRXiqgvu7WJwSU6eudn97GIfMSiPyveXi5LjGTWGZmBOROVzFqnjKXdWWqxl3EDpNg7FahRrvRfLyu8rd7Z97qSVKs3sWOb2DXaO7hauge2z9XzLdiVekULHfe-G8ueGeoPYwN-xVIReqIfYnh-6zdKMV5Jv6Hd70u0OU4bplXGStowrVMY3fZ-XGuqZrzOkisQl5g43ne9tSo_SeCAX_xY-OSFYk4g">
+<div class="absolute inset-0 bg-gradient-to-t from-pink-950/75 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+<div>
+<span class="text-[10px] tracking-wider font-mono text-pink-200 uppercase font-bold">Archive #03</span>
+<h3 class="text-xs font-semibold text-white">Cafe Nắng Ấm</h3>
+</div>
+<span class="w-6 h-6 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center text-xs text-white">✦</span>
+</div>
+</div>
+</div>
+<!-- Wing Mid Horizontal Accent: Card #04 -->
+<div class="wing-card group relative h-48 rounded-2xl overflow-hidden glass-panel border border-brand-border cursor-pointer transform -rotate-1" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuC0_pX-SpK9WVAWbpt89IfOv9TAsAJ4ZkVgvPBgtsCNFlOoNhy5yLO4nJN-VHbicUnzDnN4V3vGmRuoZkT4OeKoIMyDdBNUAD3uqo-qsuknuLy0-r1p_H-E1L2rRn4wGv09aJP9sG4NTSgP5ZolG2aiFfPvM4F0dN8qVCgc1khXLeRg3LldajH9Bq7wUd-IQfmQxqoN9DrOy-NVD3tr0CAXJrfg8Sj6euQbVc5KcJmso4oKlZc7Vt2Owg', '#04 · GÓC PHỐ ĐỎ CAFE', 'Dừng chân bên góc phố gạch đỏ cổ điển mang phong thái dạo phố hiện đại.')">
+<img alt="Góc phố đỏ cafe" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0_pX-SpK9WVAWbpt89IfOv9TAsAJ4ZkVgvPBgtsCNFlOoNhy5yLO4nJN-VHbicUnzDnN4V3vGmRuoZkT4OeKoIMyDdBNUAD3uqo-qsuknuLy0-r1p_H-E1L2rRn4wGv09aJP9sG4NTSgP5ZolG2aiFfPvM4F0dN8qVCgc1khXLeRg3LldajH9Bq7wUd-IQfmQxqoN9DrOy-NVD3tr0CAXJrfg8Sj6euQbVc5KcJmso4oKlZc7Vt2Owg">
+<div class="absolute inset-0 bg-gradient-to-t from-pink-950/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex justify-between items-end">
+<div>
+<span class="text-[10px] tracking-wider font-mono text-pink-200 uppercase font-bold">Archive #04 · Phố Chiều</span>
+<h3 class="text-sm font-semibold text-white">Góc Phố Cổ Điển</h3>
+</div>
+<button class="px-2.5 py-1 rounded-full bg-pink-500 hover:bg-pink-600 text-[10px] uppercase font-bold tracking-wider text-white shadow-sm">Phóng to</button>
+</div>
+</div>
+<!-- Wing Lower Tier: #05, #06, #07 -->
+<div class="grid grid-cols-3 gap-3">
+<!-- Card #05 -->
+<div class="wing-card group relative h-40 rounded-xl overflow-hidden glass-panel border border-brand-border cursor-pointer transform -rotate-3" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCpj1PW60BIdrIOKd5X-BBmusPuK0WHBlSOfCYUb24y4AjhoC8BmUMA4kjwS4vw44pl_4AHngovrfnOiY9OVIXx8GwDnqHFbMzRnNuBk_3o40b2H61lHX3B6sfuFl_QWCU-H1U-goV8US265LGDB7XfdOm_RH7td07vYDlLAUJvojPDn82q9M9IKwCbtryWj-kzyBf783LMZe0y1aGkgBUE-cx-XksZIBO8_qMpeCv7vBkQY_t4fqvXCg', '#05 · MÙA ĐÔNG NGƯỜI TUYẾT CARO', 'Nét đáng yêu trong không gian mùa đông ngập tràn họa tiết caro tinh nghịch.')">
+<img alt="Mùa đông người tuyết caro" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpj1PW60BIdrIOKd5X-BBmusPuK0WHBlSOfCYUb24y4AjhoC8BmUMA4kjwS4vw44pl_4AHngovrfnOiY9OVIXx8GwDnqHFbMzRnNuBk_3o40b2H61lHX3B6sfuFl_QWCU-H1U-goV8US265LGDB7XfdOm_RH7td07vYDlLAUJvojPDn82q9M9IKwCbtryWj-kzyBf783LMZe0y1aGkgBUE-cx-XksZIBO8_qMpeCv7vBkQY_t4fqvXCg">
+<div class="absolute inset-0 bg-pink-900/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-2 left-2 text-[9px] font-mono text-white font-bold bg-pink-950/60 px-1.5 py-0.5 rounded">#05 TUYẾT</div>
+</div>
+<!-- Card #06 -->
+<div class="wing-card group relative h-40 rounded-xl overflow-hidden glass-panel border border-brand-border cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuD8fFFbZcK-rFFOY7tAM3yZPMJT0rWwPrXr0PayYfiAjSrh5x_fnm9bF1QWd0qvOH31d8xYdxvx2hmdXQo8-zeJK8fjiisvsdrLHWMVTWx2y_5zKHmeEMn3GIqAPojuEXgSgQYs7Oa30j8QJPgxzJb6ElgliGD7w0ZyIN3ENhYXmtJoAPnWzSzQMU6Mp7ZO3K9CHw1McATDjYDB7uLjTdOoiErQpZfVbPu6v7iMd3gZFUaDG1QxEAQ0YQ', '#06 · CHÙA CỔ HOA HUỆ HỒNG', 'Nét thanh tao tĩnh lặng bên đóa hoa huệ hồng dưới mái chùa rêu phong.')">
+<img alt="Chùa cổ hoa huệ hồng" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8fFFbZcK-rFFOY7tAM3yZPMJT0rWwPrXr0PayYfiAjSrh5x_fnm9bF1QWd0qvOH31d8xYdxvx2hmdXQo8-zeJK8fjiisvsdrLHWMVTWx2y_5zKHmeEMn3GIqAPojuEXgSgQYs7Oa30j8QJPgxzJb6ElgliGD7w0ZyIN3ENhYXmtJoAPnWzSzQMU6Mp7ZO3K9CHw1McATDjYDB7uLjTdOoiErQpZfVbPu6v7iMd3gZFUaDG1QxEAQ0YQ">
+<div class="absolute inset-0 bg-pink-900/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-2 left-2 text-[9px] font-mono text-white font-bold bg-pink-950/60 px-1.5 py-0.5 rounded">#06 THANH KHIẾT</div>
+</div>
+<!-- Card #07 -->
+<div class="wing-card group relative h-40 rounded-xl overflow-hidden glass-panel border border-brand-border cursor-pointer transform rotate-2" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuC5IDsvaXLlxxnRxPnmo1oZfaPE2UpBLlG6ZXDoU0ZK11OfkUSG_wYcsZeZuEqzsB8SEETDNeS6H-M3nx7vM-4i4LudQr-1fDPczGny5qKT-oJ6Gp1_h8LLMBGjw1DlrkT2TB5dclwUh1c3cEQfUAh-4rLttQ63CAhlpg3Qr-d3q-EaAXk7DeX_mbBCWdpfBsJ_nPWPcKaLWxv16Ov430lvwF4eCssjosMWj_nzVV16wTSN0RrQU4u22Q', '#07 · CẦU GỖ HOA DÃ NGOẠI', 'Bước chân nhẹ nhàng trên cầu gỗ giữa cánh đồng hoa cỏ bạt ngàn.')">
+<img alt="Cầu gỗ hoa dã ngoại" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5IDsvaXLlxxnRxPnmo1oZfaPE2UpBLlG6ZXDoU0ZK11OfkUSG_wYcsZeZuEqzsB8SEETDNeS6H-M3nx7vM-4i4LudQr-1fDPczGny5qKT-oJ6Gp1_h8LLMBGjw1DlrkT2TB5dclwUh1c3cEQfUAh-4rLttQ63CAhlpg3Qr-d3q-EaAXk7DeX_mbBCWdpfBsJ_nPWPcKaLWxv16Ov430lvwF4eCssjosMWj_nzVV16wTSN0RrQU4u22Q">
+<div class="absolute inset-0 bg-pink-900/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-2 left-2 text-[9px] font-mono text-white font-bold bg-pink-950/60 px-1.5 py-0.5 rounded">#07 DÃ NGOẠI</div>
+</div>
+</div>
+</div>
+<!-- ================= CENTERPIECE HERO: CARD #01 THE MUSE ================= -->
+<div class="md:col-span-4 flex justify-center py-4">
+<div class="wing-card group relative w-full max-w-sm h-[580px] rounded-[2.5rem] overflow-hidden glass-panel-elevated p-3 cursor-pointer shadow-2xl shadow-pink-300/40" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuA_bo6gMfyyT_xx-QPIrZbzOCXPXgJIoBvpL8G-A2ai1mzbsodoBEoSDU5AwqU3LKWa6QNubY_desfIkKCkfM4pD6BDntKH6EUcRdzUoezAuElUx7NBMEMQyboLPtYpy3uG1GWFfKVC5zxa7A2bQiR86gCw2F5qtqBNpOvmpweEuxK9PI8Dw3sclHY2juVu0KqFB56PX2IPU0Xco2ggyhz-emrJz4iC7QBUFH_uvLzHAPbGNasTZDzNUQ', '#01 · THE GRAND MUSE · DẠ TIỆC HOÀNG GIA', 'Tâm điểm rạng ngời: Váy công chúa kiêu sa bên bàn tiệc sinh nhật bánh kem hồng &amp; hoa rực rỡ.')">
+<!-- Arched Inner Frame -->
+<div class="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-brand-pink/60 shadow-inner">
+<img alt="Dạ tiệc lộng lẫy váy công chúa cùng bánh kem &amp; hoa hồng" class="w-full h-full object-cover object-[center_30%] group-hover:scale-105 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_bo6gMfyyT_xx-QPIrZbzOCXPXgJIoBvpL8G-A2ai1mzbsodoBEoSDU5AwqU3LKWa6QNubY_desfIkKCkfM4pD6BDntKH6EUcRdzUoezAuElUx7NBMEMQyboLPtYpy3uG1GWFfKVC5zxa7A2bQiR86gCw2F5qtqBNpOvmpweEuxK9PI8Dw3sclHY2juVu0KqFB56PX2IPU0Xco2ggyhz-emrJz4iC7QBUFH_uvLzHAPbGNasTZDzNUQ">
+<!-- Subtle Gradient Overlays -->
+<div class="absolute inset-0 bg-gradient-to-t from-pink-950/80 via-transparent to-pink-900/20"></div>
+<!-- Collector's Stamp Ribbon Top -->
+<div class="absolute top-4 left-4 right-4 flex justify-between items-center">
+<span class="px-3.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-[11px] font-mono text-brand-darkrose font-bold border border-pink-300 shadow-sm">
+                    #01 · THE CENTERPIECE
+                  </span>
+<span class="w-8 h-8 rounded-full bg-pink-100/90 backdrop-blur-md flex items-center justify-center text-sm text-pink-600 border border-pink-300 shadow-sm sparkle-icon">
+                    ✦
+                  </span>
+</div>
+<!-- Center Bottom Monogram & Title -->
+<div class="absolute bottom-6 left-6 right-6 text-center">
+<p class="font-serif italic text-pink-200 text-sm mb-1 tracking-wider">Vương miện nhan sắc thế hệ mới</p>
+<h3 class="font-serif text-3xl font-bold text-white tracking-wider mb-2 drop-shadow-sm">NGOC HIEN</h3>
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-xs font-semibold text-brand-darkrose border border-pink-300 hover:bg-white shadow-sm transition-colors">
+<span>🔍 Xem phóng đại chân dung</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= RIGHT WING: 6 ARCHIVE CARDS ================= -->
+<div class="md:col-span-4 flex flex-col gap-5">
+<!-- Wing Top Pair: #08 & #09 -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Card #08 -->
+<div class="wing-card group relative h-64 rounded-2xl overflow-hidden glass-panel border border-brand-border cursor-pointer transform rotate-2" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuASJatpBFl9Xuz49VsJjVcOPFmS53LhIYlb7Wa0C-PvnWwU0q32SzD3AdICTLrdz5Rk-fiui8_I00QgSzzrUNOUKo0NOISMJdOkxwmLsA2O-G4_s7LRlNP7sjJ-J0vcyEZRlXJtMQUie-Z55Zvj-zLhmOI2L1ICnhE01EL3G3nVaxJiPcKmso_i96Kp7fmazHMYYd36Hfb9oGcKxld1QWQR6OB181W6SSImeBE6zlAMd7LC-1_8_sli3A', '#08 · GIÁNG SINH TINH KHÔI', 'Nụ cười trong sáng cùng chiếc khăn choàng ấm áp bên cây thông noel.')">
+<img alt="Giáng sinh tinh khôi" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASJatpBFl9Xuz49VsJjVcOPFmS53LhIYlb7Wa0C-PvnWwU0q32SzD3AdICTLrdz5Rk-fiui8_I00QgSzzrUNOUKo0NOISMJdOkxwmLsA2O-G4_s7LRlNP7sjJ-J0vcyEZRlXJtMQUie-Z55Zvj-zLhmOI2L1ICnhE01EL3G3nVaxJiPcKmso_i96Kp7fmazHMYYd36Hfb9oGcKxld1QWQR6OB181W6SSImeBE6zlAMd7LC-1_8_sli3A">
+<div class="absolute inset-0 bg-gradient-to-t from-pink-950/75 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+<div>
+<span class="text-[10px] tracking-wider font-mono text-pink-200 uppercase font-bold">Archive #08</span>
+<h3 class="text-xs font-semibold text-white">Tinh Khôi Noel</h3>
+</div>
+<span class="w-6 h-6 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center text-xs text-white">✦</span>
+</div>
+</div>
+<!-- Card #09 -->
+<div class="wing-card group relative h-64 rounded-2xl overflow-hidden glass-panel border border-brand-border cursor-pointer transform -rotate-1" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuB_l78SyuuCwF_ZW4Dtsm1My2Y7DKDUkHjUdqLm08fNf84bR_-rpLwMcD0dbtux6RaEKf4CbGn6JYizO8QPr5V5Hzp0kkWufnMPjB6sQKNRXfzfumW5PUOHJlcKmNcsnmmBEbRVMpmuoklxGtGd4n0rJmsW7qfpfx67XrmJ0GARBohs0A3s9Gdg5Yw2qZ-Ht7j9VRZw9D3qhIjHHAb-4klO27kWOMa0JO2x4Y4Kc9rbU4d5WKvu0sDhnQ', '#09 · THƯỞNG THỨC BÁNH CAFE', 'Một buổi chiều thảnh thơi với tách trà và bánh ngọt thơm lừng.')">
+<img alt="Thưởng thức bánh cafe" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_l78SyuuCwF_ZW4Dtsm1My2Y7DKDUkHjUdqLm08fNf84bR_-rpLwMcD0dbtux6RaEKf4CbGn6JYizO8QPr5V5Hzp0kkWufnMPjB6sQKNRXfzfumW5PUOHJlcKmNcsnmmBEbRVMpmuoklxGtGd4n0rJmsW7qfpfx67XrmJ0GARBohs0A3s9Gdg5Yw2qZ-Ht7j9VRZw9D3qhIjHHAb-4klO27kWOMa0JO2x4Y4Kc9rbU4d5WKvu0sDhnQ">
+<div class="absolute inset-0 bg-gradient-to-t from-pink-950/75 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+<div>
+<span class="text-[10px] tracking-wider font-mono text-pink-200 uppercase font-bold">Archive #09</span>
+<h3 class="text-xs font-semibold text-white">Ngọt Ngào Thư Thái</h3>
+</div>
+<span class="w-6 h-6 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center text-xs text-white">✦</span>
+</div>
+</div>
+</div>
+<!-- Wing Mid Horizontal Accent: Card #10 -->
+<div class="wing-card group relative h-48 rounded-2xl overflow-hidden glass-panel border border-brand-border cursor-pointer transform rotate-1" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDKd9up-N_mpAkBd3ja6L774PAxgh4Vauuy0w3wQS3tWq_fUnx-OfVls1ln5aMLNUI-zUMRPFZiRYHmpOWEB-m7_YPLedqsdBPvHa6tqsMfu_9q3UMx3SUdrHXyRNxSanLD7DACvF0Dc2tEqanG90pI0aTA54E36rZ3rwVpTu5lT6j2gS9-J4ucvIgukvy8fKl0igvUPVsSgF2ZXWR0oVm5-EMd3wJJYEAX1fad3w4YA2E0rdlXGlkYbA', '#10 · GƯƠNG TRÒN CỔ ĐIỂN', 'Góc nhìn phản chiếu độc đáo trong khung gương tròn gỗ mộc vintage.')">
+<img alt="Gương tròn cổ điển" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKd9up-N_mpAkBd3ja6L774PAxgh4Vauuy0w3wQS3tWq_fUnx-OfVls1ln5aMLNUI-zUMRPFZiRYHmpOWEB-m7_YPLedqsdBPvHa6tqsMfu_9q3UMx3SUdrHXyRNxSanLD7DACvF0Dc2tEqanG90pI0aTA54E36rZ3rwVpTu5lT6j2gS9-J4ucvIgukvy8fKl0igvUPVsSgF2ZXWR0oVm5-EMd3wJJYEAX1fad3w4YA2E0rdlXGlkYbA">
+<div class="absolute inset-0 bg-gradient-to-t from-pink-950/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex justify-between items-end">
+<div>
+<span class="text-[10px] tracking-wider font-mono text-pink-200 uppercase font-bold">Archive #10 · Vintage Mirror</span>
+<h3 class="text-sm font-semibold text-white">Phản Chiếu Gương Tròn</h3>
+</div>
+<button class="px-2.5 py-1 rounded-full bg-pink-500 hover:bg-pink-600 text-[10px] uppercase font-bold tracking-wider text-white shadow-sm">Phóng to</button>
+</div>
+</div>
+<!-- Wing Lower Tier: #11, #12, #13 -->
+<div class="grid grid-cols-3 gap-3">
+<!-- Card #11 -->
+<div class="wing-card group relative h-40 rounded-xl overflow-hidden glass-panel border border-brand-border cursor-pointer transform -rotate-2" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBHe5VMwl3NL1yoqWYHlxpm8Grjy8xh7_MxJDRdFZTTaJ6-zk6EcQqhR2DgSbyCJZr4T9uSTEk5cio8xPhsIwK14EgFeMJaltpK6nxC7BSBOPXatzUHJRTJ6Gr1Ye5a7zVZZZlaa87gQFzGivrddexGsLa4x-yjalBlRMu4SigSMD9DU1ucBjxvqShXYw01Qpap_kK0Ww9cWB_3jrLauVmHKNqCOBwKB1k3YCy7JUgO5FKX61SDtrLzPw', '#11 · ĐÈN LỒNG KIẾN TRÚC MỘC', 'Ánh đèn lồng ấm cúng tỏa rạng trong không gian kiến trúc gỗ mộc mạc.')">
+<img alt="Đèn lồng kiến trúc mộc" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHe5VMwl3NL1yoqWYHlxpm8Grjy8xh7_MxJDRdFZTTaJ6-zk6EcQqhR2DgSbyCJZr4T9uSTEk5cio8xPhsIwK14EgFeMJaltpK6nxC7BSBOPXatzUHJRTJ6Gr1Ye5a7zVZZZlaa87gQFzGivrddexGsLa4x-yjalBlRMu4SigSMD9DU1ucBjxvqShXYw01Qpap_kK0Ww9cWB_3jrLauVmHKNqCOBwKB1k3YCy7JUgO5FKX61SDtrLzPw">
+<div class="absolute inset-0 bg-pink-900/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-2 left-2 text-[9px] font-mono text-white font-bold bg-pink-950/60 px-1.5 py-0.5 rounded">#11 ĐÈN LỒNG</div>
+</div>
+<!-- Card #12 -->
+<div class="wing-card group relative h-40 rounded-xl overflow-hidden glass-panel border border-brand-border cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDCwqFgTIxljXTHSf1pIrTQXBRLnYHGKqt7Un30hlzeQva45yWdP77trChrex0sEDBj9FHopgdzjizD9f2E5k-WWy3aMaXXGIIss6shz-Zd3owU2928YWG21GhzSK53D70VcmKX4VeFMs7yp5vP0w4mLIIaUAC1AdlVBdepcaKcS-emGB8Hn87BZnEu8HiZIMXV8NH0y173aW8e1SrpWXhnSl7kpfVONcJ5ij2JzoN3uV95aaWWQVqZZA', '#12 · CỬA GỖ TRUYỀN THỐNG HOA HUỆ', 'Vẻ dịu dàng e ấp bên cánh cửa gỗ truyền thống và nhành hoa thanh tao.')">
+<img alt="Cửa gỗ truyền thống hoa huệ" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwqFgTIxljXTHSf1pIrTQXBRLnYHGKqt7Un30hlzeQva45yWdP77trChrex0sEDBj9FHopgdzjizD9f2E5k-WWy3aMaXXGIIss6shz-Zd3owU2928YWG21GhzSK53D70VcmKX4VeFMs7yp5vP0w4mLIIaUAC1AdlVBdepcaKcS-emGB8Hn87BZnEu8HiZIMXV8NH0y173aW8e1SrpWXhnSl7kpfVONcJ5ij2JzoN3uV95aaWWQVqZZA">
+<div class="absolute inset-0 bg-pink-900/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-2 left-2 text-[9px] font-mono text-white font-bold bg-pink-950/60 px-1.5 py-0.5 rounded">#12 TRUYỀN THỐNG</div>
+</div>
+<!-- Card #13 -->
+<div class="wing-card group relative h-40 rounded-xl overflow-hidden glass-panel border border-brand-border cursor-pointer transform rotate-3" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAN50QkqJbnvdMxlzsnZSsFbyYW-BK42oiJiBHT2zIbKE3pDp3hSRDxOYbRhr1Coq9G4ckRAnzejYFEn13wPxSTMyh0CTR9-9xo_PozeTH_1C_Jwews9x1SeY-UbTIRWTVLsrE4epBnda19XDFv6mXY8jsh_04fNkRA7n13DTBHKOUx0uMuRQxWDZFBAXdP3Wc9ZGSEQAfVkHjV3qZGgKgmwKLA7UxVPWGZmPYL1WUYoTR23MZm_c32tw', '#13 · CỬA GỖ MỘC RÍU RÍT', 'Bức màn khép lại 13 góc nhìn thị giác kinh điển bên quán cà phê Ríu Rít thanh bình.')">
+<img alt="Cửa gỗ mộc ríu rít" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN50QkqJbnvdMxlzsnZSsFbyYW-BK42oiJiBHT2zIbKE3pDp3hSRDxOYbRhr1Coq9G4ckRAnzejYFEn13wPxSTMyh0CTR9-9xo_PozeTH_1C_Jwews9x1SeY-UbTIRWTVLsrE4epBnda19XDFv6mXY8jsh_04fNkRA7n13DTBHKOUx0uMuRQxWDZFBAXdP3Wc9ZGSEQAfVkHjV3qZGgKgmwKLA7UxVPWGZmPYL1WUYoTR23MZm_c32tw">
+<div class="absolute inset-0 bg-pink-900/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-2 left-2 text-[9px] font-mono text-white font-bold bg-pink-950/60 px-1.5 py-0.5 rounded">#13 FINALE</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ButterflyWings13GallerySection -->
+<!-- BEGIN: ThreeDimensionalCarouselSection -->
+<section class="relative py-28 px-4 z-10 overflow-hidden" data-purpose="3d-orbit-carousel-showcase" id="vong-xoay-3d">
+<!-- Ambient Glow Behind Carousel -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-pink-300/30 rounded-full filter blur-[130px] pointer-events-none -z-10"></div>
+<!-- Section Title & Description -->
+<div class="max-w-4xl mx-auto text-center mb-16">
+<h2 class="font-serif text-5xl sm:text-7xl font-bold text-brand-darkrose tracking-wider mb-4">
+          VÒNG XOAY 3D
+        </h2>
+
+</div>
+<!-- 3D Carousel Stage -->
+<div class="carousel-stage w-full max-w-5xl mx-auto h-[460px] flex items-center justify-center relative">
+<!-- Rotating Cylinder Container Target -->
+<div class="carousel-cylinder" id="cylinder">
+<!-- Item 1 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="0" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCbvVvMlUdp5W4Rl3BT-i4-4XY-PUHKfkKc15YJ619lel0v0GkdOFt7Nr90oJq6y-wbDNKdYvARkK4ClcFZVQtaDCJ2wDUly-v2JBAiwWQsu3HAOs__mNkbwq5Eh5IVfqf2OgS0Mw2Wi1isncwi-DbJLdX_VeSUPSX1q5slJaA2AnZoxYkpG1q0J339F_Pc_3YAo8wo6cQycOMkk9wy94dYxWyS1UN4fbsaXeuzwUysG59k-HpW0n6l8A', '3D Orbit #01 · Sông Nước Duyên Dáng', 'Áo dài nón lá sông nước duyên dáng, thuần khiết dịu dàng.')">
+<img alt="Áo dài nón lá sông nước duyên dáng" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbvVvMlUdp5W4Rl3BT-i4-4XY-PUHKfkKc15YJ619lel0v0GkdOFt7Nr90oJq6y-wbDNKdYvARkK4ClcFZVQtaDCJ2wDUly-v2JBAiwWQsu3HAOs__mNkbwq5Eh5IVfqf2OgS0Mw2Wi1isncwi-DbJLdX_VeSUPSX1q5slJaA2AnZoxYkpG1q0J339F_Pc_3YAo8wo6cQycOMkk9wy94dYxWyS1UN4fbsaXeuzwUysG59k-HpW0n6l8A">
+</div>
+<!-- Item 2 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="1" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCMaM6nsO2B5ymTpShbwyUt1-xwX-xSGo6vQ7UX-TV3jZzvrj4IqQI8Numg5ktZ7Xq9_EdTNkPFAFctk3T7iX_wVRuWB-26mXKOhId89dTjI0h4XZE7sA-EpngU9SVszx7O7qYAl6b7_J8AO8Is9zvdrguYXLLDIShQ2nwH9FYJfC8EObiczUnm_cAGLR_7LDnG5NxdiY6dWK0HB47UYgMvGA_DQNt0i9yrGJoMlr7GzbslEWsFNyMAoQ', '3D Orbit #02 · Công Chúa Lộng Lẫy', 'Selfie công chúa váy dạ hội lung linh với nét đẹp đài các.')">
+<img alt="Selfie công chúa váy dạ hội lung linh" class="w-full h-full object-cover object-[center_20%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMaM6nsO2B5ymTpShbwyUt1-xwX-xSGo6vQ7UX-TV3jZzvrj4IqQI8Numg5ktZ7Xq9_EdTNkPFAFctk3T7iX_wVRuWB-26mXKOhId89dTjI0h4XZE7sA-EpngU9SVszx7O7qYAl6b7_J8AO8Is9zvdrguYXLLDIShQ2nwH9FYJfC8EObiczUnm_cAGLR_7LDnG5NxdiY6dWK0HB47UYgMvGA_DQNt0i9yrGJoMlr7GzbslEWsFNyMAoQ">
+</div>
+<!-- Item 3 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="2" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuD-iy6cvv1T4YInxYv7A5j-pHfq-N006wkSc8_y55IFUeo8JxIedLWf3dOzNFnFdbYNX0pzlyk7T8mmTBWk_4Je5hRxZGIeFFSfJ3OL3YPjIG9p5BpzEQFjsDgsJdhY_d72SR-nirKGn0lm4zXviZSUjnMMRUEwZmDgVGYBXBNbTNnDm4VHSbL2goPcspjJVBViogsblpSSy1cWSTBEMrmT3G-TDAEbNrx2WLLkdoFHGmXuVt4_ED-2dg', '3D Orbit #03 · Lò Sưởi Quý Tộc', 'Khoảnh khắc bên lò sưởi cổ điển quý tộc đậm chất vương giả.')">
+<img alt="Bên lò sưởi cổ điển quý tộc" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-iy6cvv1T4YInxYv7A5j-pHfq-N006wkSc8_y55IFUeo8JxIedLWf3dOzNFnFdbYNX0pzlyk7T8mmTBWk_4Je5hRxZGIeFFSfJ3OL3YPjIG9p5BpzEQFjsDgsJdhY_d72SR-nirKGn0lm4zXviZSUjnMMRUEwZmDgVGYBXBNbTNnDm4VHSbL2goPcspjJVBViogsblpSSy1cWSTBEMrmT3G-TDAEbNrx2WLLkdoFHGmXuVt4_ED-2dg">
+</div>
+<!-- Item 4 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="3" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBkPjgkMl-a2UWG9D4exYNd3HhPGdGX1vNj5REt9_7_fxrI-0Ql7usZGykS0Wn8pv1uzOKxqndBgfYuePVDhRsaYsOo6HNM4F9RNuNsrZOk9xuwd4KXPEvYTkvZUeGz3HWXQjDEmn3Wvn_-xnO5VWh5DkchV5CepURghnoBA46ncU4Vq7TnCv7VKRTV6h6H9rOCuE6PeizU2pLdhsUdPQ4Vx94AA0rej4mqHZ98oA2bKAbD9oOA3x6BOQ', '3D Orbit #04 · Bàn Tiệc Ngọt Ngào', 'Bàn tiệc sinh nhật bánh kem hoa hồng rực rỡ sắc xuân.')">
+<img alt="Bàn tiệc sinh nhật bánh kem hoa hồng" class="w-full h-full object-cover object-[center_30%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkPjgkMl-a2UWG9D4exYNd3HhPGdGX1vNj5REt9_7_fxrI-0Ql7usZGykS0Wn8pv1uzOKxqndBgfYuePVDhRsaYsOo6HNM4F9RNuNsrZOk9xuwd4KXPEvYTkvZUeGz3HWXQjDEmn3Wvn_-xnO5VWh5DkchV5CepURghnoBA46ncU4Vq7TnCv7VKRTV6h6H9rOCuE6PeizU2pLdhsUdPQ4Vx94AA0rej4mqHZ98oA2bKAbD9oOA3x6BOQ">
+</div>
+<!-- Item 5 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="4" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCKF2dw7JmzaKGJYVIa6WTJ9GwQlH5fz00KOsbcJt3bKcT4NML3PiKkIYxMgcYNrd7CeBDUbYp00QFdnvgLaQZpzquRueJ9X_27yxz-yOWkBQBBJg6PBOcdVxpAZwklSbeLCPldU0UkOIsi43Um2rpIJU1e_8Y2viiNmlZ9D5epj3P_8of7fd5oyxQvshUzsIsyPrF0Oqwrcl2h7PugaZ6Fw-XrKweJdK0D6DRBEj0U8HWeECSFgg990A', '3D Orbit #05 · Cổng Gỗ Quán Cảm', 'Cổng gỗ quán Cảm thanh lịch, tĩnh lặng và mộc mạc.')">
+<img alt="Cổng gỗ quán Cảm thanh lịch" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKF2dw7JmzaKGJYVIa6WTJ9GwQlH5fz00KOsbcJt3bKcT4NML3PiKkIYxMgcYNrd7CeBDUbYp00QFdnvgLaQZpzquRueJ9X_27yxz-yOWkBQBBJg6PBOcdVxpAZwklSbeLCPldU0UkOIsi43Um2rpIJU1e_8Y2viiNmlZ9D5epj3P_8of7fd5oyxQvshUzsIsyPrF0Oqwrcl2h7PugaZ6Fw-XrKweJdK0D6DRBEj0U8HWeECSFgg990A">
+</div>
+<!-- Item 6 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="5" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuB1Ux1nRf5nA3EKnR1_W1P1NnGm7_r2EZ-suUKFe6DHtqgTLbTRo8zTBXqX3dDnIunULkwCXCfc_zcdsIfz3JZKeDwqrVc3M1vEUKaIEUZYJZX5PlCKbUjAlodSeViB55ZTVyGhZiS0L6jIxGPBE0L458qHZNkYJU494Avdaap7T5Ryj_BwygpFXLTC6ft1RoEBiw4gZphDG5asAR9vS-K3lPSunyZk5wxuSGRtd3-baWz1tuuCg-lUYw', '3D Orbit #06 · Ban Công Xanh Ngát', 'Góc ban công gỗ xanh mát mắt hòa cùng thiên nhiên trong lành.')">
+<img alt="Ban công gỗ xanh mát mắt" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1Ux1nRf5nA3EKnR1_W1P1NnGm7_r2EZ-suUKFe6DHtqgTLbTRo8zTBXqX3dDnIunULkwCXCfc_zcdsIfz3JZKeDwqrVc3M1vEUKaIEUZYJZX5PlCKbUjAlodSeViB55ZTVyGhZiS0L6jIxGPBE0L458qHZNkYJU494Avdaap7T5Ryj_BwygpFXLTC6ft1RoEBiw4gZphDG5asAR9vS-K3lPSunyZk5wxuSGRtd3-baWz1tuuCg-lUYw">
+</div>
+<!-- Item 7 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="6" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCV5gdYvBDJJ3tXRByWUrX2H1PYM_vepXyZxeQFxtkFVvHdbyGJhmKkmNnjNZSbJ-uMeDbwuZKsfrd5ItHlHoHiZyNDXCOlZj6h_cIBxY6G0KrkM512PEoyToniwTkBFUYZ3VayGPZh9aY4BZb0fd7k46a9CKLp1KOMuDK6OXJqQJ5_5b6KN3TqStERmB1nw4ZlSAbLFZrObJTc1ujNb_nB3YduTuLVqgAGYAWvzq1S97UEcvusG0HOkw', '3D Orbit #07 · Góc Ngắm Thảnh Thơi', 'Góc ngắm cảnh thảnh thơi với phong thái thanh tao nhẹ nhàng.')">
+<img alt="Góc ngắm cảnh thảnh thơi" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV5gdYvBDJJ3tXRByWUrX2H1PYM_vepXyZxeQFxtkFVvHdbyGJhmKkmNnjNZSbJ-uMeDbwuZKsfrd5ItHlHoHiZyNDXCOlZj6h_cIBxY6G0KrkM512PEoyToniwTkBFUYZ3VayGPZh9aY4BZb0fd7k46a9CKLp1KOMuDK6OXJqQJ5_5b6KN3TqStERmB1nw4ZlSAbLFZrObJTc1ujNb_nB3YduTuLVqgAGYAWvzq1S97UEcvusG0HOkw">
+</div>
+<!-- Item 8 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="7" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDOiMAqtpcY4ZGJb8BgevLZUXPxWInPDN4BeD4mwTUPtTllHDIKT-YbtZDegHXh3axc0v7qNY4cf643S4pWrWo0cAKRJGX4pqruTYmfnjh3QxOvKmHRH9JKH0Xpayk8slYLj64Wnvnh4iRhXgpVdNSDvTHqbzlEbf9NzjanrY6TyzHIPsM3TWtTQDQJnDq8xWIhlH0c2fsZVTf6wQ4EH4zZogXJjoke5PPPC0piJHVB_G1NffEVuCMVeQ', '3D Orbit #08 · Hoa Giấy Nắng Vàng', 'Cây hoa giấy rực rỡ nắng vàng tô điểm nét đẹp trẻ trung tươi tắn.')">
+<img alt="Cây hoa giấy rực rỡ nắng vàng" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOiMAqtpcY4ZGJb8BgevLZUXPxWInPDN4BeD4mwTUPtTllHDIKT-YbtZDegHXh3axc0v7qNY4cf643S4pWrWo0cAKRJGX4pqruTYmfnjh3QxOvKmHRH9JKH0Xpayk8slYLj64Wnvnh4iRhXgpVdNSDvTHqbzlEbf9NzjanrY6TyzHIPsM3TWtTQDQJnDq8xWIhlH0c2fsZVTf6wQ4EH4zZogXJjoke5PPPC0piJHVB_G1NffEVuCMVeQ">
+</div>
+<!-- Item 9 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="8" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuABiF-yVtTsQyw6dTwh74tiyOlBc-rGlcLH1WqM3RQhBqSy_LhU41YIKLyEDJqvp-WF80l6mbeHnqoGQxRcdiKquVEymHXGxJ-IspuKIoOyRbzjsdl6nyUG-z3fZF5md_5QR-Gq6BBU8rTAKhqeQyP8nvNC2vZOyLyHd0SPg0owRph1rz7uivahNTUdl0yM_-pVaBw7U03_b1EnBngtNowUUwZE4vFCcnMbNjJGe1BO_cl8np18-54LZA', '3D Orbit #09 · Quán Bánh Ngoài Trời', 'Quán bánh cổ điển ngoài trời mang phong cách hoài niệm vintage.')">
+<img alt="Quán bánh cổ điển ngoài trời" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABiF-yVtTsQyw6dTwh74tiyOlBc-rGlcLH1WqM3RQhBqSy_LhU41YIKLyEDJqvp-WF80l6mbeHnqoGQxRcdiKquVEymHXGxJ-IspuKIoOyRbzjsdl6nyUG-z3fZF5md_5QR-Gq6BBU8rTAKhqeQyP8nvNC2vZOyLyHd0SPg0owRph1rz7uivahNTUdl0yM_-pVaBw7U03_b1EnBngtNowUUwZE4vFCcnMbNjJGe1BO_cl8np18-54LZA">
+</div>
+<!-- Item 10 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="9" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAw30vokln_vZGdnVo3VWesqwePfEJX5riW9pCoWcfQZZfV_omEVAHTKAmQUKCDyzGcYpbZ499zt8ecdvNCNKhzCOv46l0rMkeivRwPqS4JNelSM-ziD5uUn26jddXJPxTaV9nB_3HOeOZdIctyIM7sQQ_ivg0IlUD-onzV4HaC2j2jm-yZeLlycguerv-3WnsAMBZEX5az4CYKvxeBySWBgY9q_VbY2R2TEDvC8eMwaH-ftyh4tQbgoA', '3D Orbit #10 · Selfie Dễ Thương', 'Selfie dễ thương trong xe với nụ cười ngọt ngào đốn tim.')">
+<img alt="Selfie dễ thương trong xe" class="w-full h-full object-cover object-[center_20%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw30vokln_vZGdnVo3VWesqwePfEJX5riW9pCoWcfQZZfV_omEVAHTKAmQUKCDyzGcYpbZ499zt8ecdvNCNKhzCOv46l0rMkeivRwPqS4JNelSM-ziD5uUn26jddXJPxTaV9nB_3HOeOZdIctyIM7sQQ_ivg0IlUD-onzV4HaC2j2jm-yZeLlycguerv-3WnsAMBZEX5az4CYKvxeBySWBgY9q_VbY2R2TEDvC8eMwaH-ftyh4tQbgoA">
+</div>
+<!-- Item 11 -->
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="10" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAg9DnlAG9XNONswgZjqvOBfynpzY-6HIUg2OU-mha8SUCfECVwFaXWHt8nD3DyXY-Ty_YeCszHHfe4AMNyxg7iMDpwM2c6jVfMD4QCUqx7g6G2cUiZH5-CSoRqBv9kZT82-KVbhwfmsHBGzYv3qKyZdDDjVkhu63OcQloFyuS0FdIKylbbb7GuiWfQpcfI0lIzgzlIeTSNR5iyS2Lvr59LJu3Lgo0DtAXB6ogXxntqy3-8-xESeKk6FQ', '3D Orbit #11 · Nụ Cười Giáng Sinh', 'Nụ cười Giáng sinh rạng rỡ đón chào mùa lễ hội an lành hạnh phúc.')">
+<img alt="Nụ cười Giáng sinh rạng rỡ" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg9DnlAG9XNONswgZjqvOBfynpzY-6HIUg2OU-mha8SUCfECVwFaXWHt8nD3DyXY-Ty_YeCszHHfe4AMNyxg7iMDpwM2c6jVfMD4QCUqx7g6G2cUiZH5-CSoRqBv9kZT82-KVbhwfmsHBGzYv3qKyZdDDjVkhu63OcQloFyuS0FdIKylbbb7GuiWfQpcfI0lIzgzlIeTSNR5iyS2Lvr59LJu3Lgo0DtAXB6ogXxntqy3-8-xESeKk6FQ">
+</div>
+</div>
+<!-- 3D Reflective Ground Floor -->
+<div class="floor-reflection absolute bottom-6 w-[550px] h-[550px] rounded-full pointer-events-none -z-10"></div>
+</div>
+<!-- Interactive 3D Control Bar -->
+<div class="max-w-xl mx-auto mt-10 p-4 rounded-2xl glass-panel flex flex-wrap items-center justify-between gap-4 border border-brand-border shadow-md">
+<!-- Pause / Resume Toggle -->
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-pink-100 hover:bg-pink-200 border border-pink-300 text-xs font-bold uppercase tracking-wider text-brand-darkrose transition-colors shadow-sm" id="toggle-spin-btn">
+<span id="spin-icon">⏸</span>
+<span id="spin-btn-label">Tạm dừng</span>
+</button>
+<!-- Reverse Direction Button -->
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-pink-100 hover:bg-pink-200 border border-pink-300 text-xs font-bold uppercase tracking-wider text-brand-darkrose transition-colors shadow-sm" id="reverse-dir-btn">
+<span>⟲ Đổi chiều</span>
+</button>
+<!-- Speed Range Slider -->
+<div class="flex items-center gap-3">
+<span class="text-[11px] font-mono text-brand-plumdark font-bold uppercase">Tốc độ:</span>
+<input class="w-24 accent-pink-500 bg-pink-100 h-1.5 rounded-lg cursor-pointer" id="speed-slider" max="10" min="1" type="range" value="4">
+</div>
+</div>
+</section>
+<!-- END: ThreeDimensionalCarouselSection -->
+<!-- BEGIN: EditorialQuoteSection -->
+<section class="py-20 px-4 text-center z-10 relative" id="ky-yeu">
+<div class="max-w-3xl mx-auto p-10 rounded-3xl glass-panel-elevated relative overflow-hidden border border-brand-pink/40 shadow-xl shadow-pink-200/50">
+<div class="text-4xl text-brand-pink mb-4 font-serif">“</div>
+<p class="font-serif italic text-xl sm:text-2xl text-brand-darkrose mb-6 leading-relaxed font-semibold">Một chút mộc mạc, một chút dịu dàng — chỉ là một cô gái yêu cái đẹp, thích ghi lại từng khoảnh khắc thanh xuân ngọt ngào bên những người thương yêu.</p>
+<span class="font-sans text-xs tracking-widest uppercase font-bold text-brand-hotpink">— Gửi tặng những khoảnh khắc dịu dàng nhất —</span>
+</div>
+</section>
+<!-- END: EditorialQuoteSection -->
+</main>
+<!-- BEGIN: MainFooter -->
+<footer class="border-t border-pink-200/70 bg-brand-deep/90 backdrop-blur-xl py-14 px-6 relative z-10" data-purpose="site-footer" id="footer">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+<!-- Creator Branding -->
+<div class="text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+<span class="sparkle-icon text-brand-hotpink font-bold">✦</span>
+<span class="font-serif text-2xl font-bold tracking-widest text-brand-darkrose">THANHPHAT</span>
+</div>
+<p class="text-xs text-brand-plumdark/80 font-sans font-medium max-w-sm">
+          Trang web lưu giữ những khoảnh khắc xinh đẹp dành riêng cho Ngoc Hien. Hoàn toàn phi thương mại và phục vụ mục đích kỷ niệm.
+        </p>
+</div>
+<!-- Quick Nav Links in Footer -->
+<div class="flex flex-wrap justify-center gap-6 text-xs text-brand-plumdark font-semibold">
+<a class="hover:text-brand-hotpink transition-colors" href="#hero">Về đầu trang</a>
+<a class="hover:text-brand-hotpink transition-colors" href="#thu-vien">Thư viện 13 ảnh</a>
+<a class="hover:text-brand-hotpink transition-colors" href="#vong-xoay-3d">Vòng xoay 3D</a>
+<a class="hover:text-brand-hotpink transition-colors" href="#ky-yeu">Lời nhắn</a>
+</div>
+<!-- Back to top button -->
+<div class="text-center md:text-right">
+<a class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pink-300 bg-white hover:bg-pink-100 text-xs font-semibold text-brand-darkrose transition-all shadow-sm" href="#hero">
+<span>Lên đầu trang ↑</span>
+</a>
+</div>
+</div>
+<!-- Bottom Copyright Disclaimer -->
+<div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-pink-200/60 text-center text-[11px] text-brand-plumdark/60 font-mono font-medium">
+      NGOC HIEN ARCHIVE · THANHPHAT VISUAL COLLECTION
+    </div>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: InteractiveLightboxModal -->
+<div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-2xl hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0" data-purpose="fullscreen-lightbox" id="lightbox-modal">
+<div class="relative max-w-4xl w-full rounded-3xl glass-panel-elevated p-4 sm:p-6 border border-pink-300 flex flex-col md:flex-row gap-6 items-center shadow-2xl">
+<!-- Close Button Top Right -->
+<button class="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-white border border-pink-300 text-brand-darkrose flex items-center justify-center hover:bg-pink-50 transition-colors shadow-lg z-20 font-bold" onclick="closeLightbox()">
+        ✕
+      </button>
+<!-- Lightbox Large Image Display -->
+<div class="w-full md:w-3/5 h-80 sm:h-96 md:h-[480px] rounded-2xl overflow-hidden bg-pink-50 relative border border-pink-200">
+<img alt="Enlarged Visual" class="w-full h-full object-contain" id="lightbox-img" src="">
+</div>
+<!-- Lightbox Detail Narrative -->
+<div class="w-full md:w-2/5 flex flex-col justify-between py-2">
+<div>
+<span class="inline-block px-3 py-1 rounded-full bg-pink-100 border border-pink-300 text-[10px] font-mono text-brand-darkrose font-bold uppercase tracking-widest mb-3">
+            ARCHIVE FOCUS · THANHPHAT
+          </span>
+<h3 class="font-serif text-2xl sm:text-3xl font-bold text-brand-darkrose mb-3" id="lightbox-title"></h3>
+<p class="text-sm text-brand-plumdark leading-relaxed font-medium mb-6" id="lightbox-desc"></p>
+</div>
+<div class="pt-4 border-t border-pink-200 flex items-center justify-between">
+<span class="text-xs text-brand-hotpink font-serif italic font-semibold">Thần thái đỉnh cao · 2024</span>
+<button class="px-5 py-2 rounded-full bg-pink-500 text-white text-xs font-semibold uppercase tracking-wider hover:bg-pink-600 transition-colors shadow-sm" onclick="closeLightbox()">
+            Đóng lại
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- END: InteractiveLightboxModal -->
+<!-- BEGIN: ScriptsForInteractivity -->
+<script data-purpose="magic-cursor-sparkle-trail-generator">
+  // High-performance Magic Cursor Sparkle Trail Engine
+  (function initCursorSparkleTrail() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const container = document.getElementById('cursor-sparkle-container');
+    if (!container) return;
+
+    // Palette of colors: ruby pink, rose gold, sweet pink, pearlescent white
+    const SPARKLE_COLORS = [
+      '#f472b6',
+      '#fb7185',
+      '#ffd1dc',
+      '#ffffff',
+      '#fbcfe8',
+      '#fda4af',
+      '#ec4899'
+    ];
+
+    const STAR_SYMBOLS = ['✦', '✧', '⋆', '･ﾟ'];
+
+    let lastX = 0;
+    let lastY = 0;
+    let lastTime = 0;
+    const THROTTLE_MS = 28; // ~35 updates per second max for smooth trail without DOM overload
+    const MIN_DISTANCE = 7; // Only spawn if mouse moved at least 7px
+
+    function createSparkle(x, y) {
+      // Spawn 1 to 2 particles per point for lush twinkle feel
+      const count = Math.random() > 0.4 ? 2 : 1;
+
+      for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'cursor-sparkle-particle';
+
+        // Randomize sparkle type: 0 = 4-point star text, 1 = glowing round orb, 2 = diamond
+        const typeChoice = Math.random();
+        const color = SPARKLE_COLORS[Math.floor(Math.random() * SPARKLE_COLORS.length)];
+        const startScale = (Math.random() * 0.4 + 0.8).toFixed(2);
+        const rot = (Math.random() * 240 - 120).toFixed(0);
+        
+        // Random directional drift
+        const moveX = (Math.random() * 40 - 20).toFixed(1);
+        const moveY = (Math.random() * -35 - 10).toFixed(1);
+        const duration = (Math.random() * 0.35 + 0.65).toFixed(2); // 0.65s to 1.0s
+
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.setProperty('--sparkle-scale-start', startScale);
+        particle.style.setProperty('--sparkle-move-x', `${moveX}px`);
+        particle.style.setProperty('--sparkle-move-y', `${moveY}px`);
+        particle.style.setProperty('--sparkle-rot', `${rot}deg`);
+
+        if (typeChoice > 0.4) {
+          // 4-point star / twinkle symbol
+          const starEl = document.createElement('span');
+          starEl.className = 'sparkle-shape-star';
+          starEl.textContent = STAR_SYMBOLS[Math.floor(Math.random() * STAR_SYMBOLS.length)];
+          const size = Math.floor(Math.random() * 10) + 12; // 12px to 22px
+          starEl.style.setProperty('--sparkle-size', `${size}px`);
+          starEl.style.setProperty('--sparkle-color', color);
+          particle.appendChild(starEl);
+        } else if (typeChoice > 0.15) {
+          // Glowing orb
+          const dotEl = document.createElement('span');
+          dotEl.className = 'sparkle-shape-dot';
+          const size = Math.floor(Math.random() * 5) + 5; // 5px to 10px
+          dotEl.style.setProperty('--sparkle-size', `${size}px`);
+          dotEl.style.setProperty('--sparkle-color', color);
+          dotEl.style.setProperty('--sparkle-glow', color);
+          particle.appendChild(dotEl);
+        } else {
+          // Mini Diamond shimmer
+          const diaEl = document.createElement('div');
+          diaEl.className = 'sparkle-shape-diamond';
+          const size = Math.floor(Math.random() * 6) + 8; // 8px to 14px
+          diaEl.style.setProperty('--sparkle-size', `${size}px`);
+          diaEl.style.setProperty('--sparkle-color', color);
+          particle.appendChild(diaEl);
+        }
+
+        container.appendChild(particle);
+
+        // Auto cleanup from DOM after animation completes
+        setTimeout(() => {
+          if (particle.parentNode) {
+            particle.parentNode.removeChild(particle);
+          }
+        }, duration * 1000 + 50);
+      }
+    }
+
+    function handlePointerMove(e) {
+      const now = performance.now();
+      if (now - lastTime < THROTTLE_MS) return;
+
+      const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
+      if (dist < MIN_DISTANCE) return;
+
+      lastTime = now;
+      lastX = e.clientX;
+      lastY = e.clientY;
+
+      createSparkle(e.clientX, e.clientY);
+    }
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+  })();
+</script>
+<script data-purpose="sakura-petals-generator">
+  // Falling Sakura Petals Engine with high performance 60fps animations
+  (function initSakuraPetals() {
+    // Check user preference for reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const container = document.getElementById('sakura-falling-container');
+    if (!container) return;
+
+    const PETAL_COUNT = 34; // Subtle and elegant density
+    const petals = [];
+
+    for (let i = 0; i < PETAL_COUNT; i++) {
+      const petalNode = document.createElement('div');
+      petalNode.className = 'sakura-petal-node';
+
+      const petalLeaf = document.createElement('div');
+      petalLeaf.className = 'sakura-petal-leaf';
+
+      // Random attributes for natural variation
+      const size = Math.floor(Math.random() * 14) + 12; // 12px to 26px
+      const leftPos = Math.random() * 100; // 0% to 100vw
+      const fallDuration = (Math.random() * 6 + 7).toFixed(1); // 7s to 13s
+      const fallDelay = (-1 * (Math.random() * 14)).toFixed(1); // Staggered initial starts
+      const swayDuration = (Math.random() * 2.5 + 2.5).toFixed(1); // 2.5s to 5s
+      const swayDelay = (-1 * (Math.random() * 4)).toFixed(1);
+      const swayDistance = Math.floor(Math.random() * 32) + 20; // 20px to 52px
+      const maxOpacity = (Math.random() * 0.45 + 0.5).toFixed(2); // 0.5 to 0.95
+      const aspectScale = (Math.random() * 0.35 + 0.85).toFixed(2); // Height to width natural ratio
+
+      // Apply node-level styles (fall animation)
+      petalNode.style.left = `${leftPos}%`;
+      petalNode.style.width = `${size}px`;
+      petalNode.style.height = `${Math.round(size * aspectScale)}px`;
+      petalNode.style.animationDuration = `${fallDuration}s`;
+      petalNode.style.animationDelay = `${fallDelay}s`;
+      petalNode.style.setProperty('--petal-max-opacity', maxOpacity);
+
+      // Apply leaf-level styles (3D flutter & sway)
+      petalLeaf.style.animationDuration = `${swayDuration}s`;
+      petalLeaf.style.animationDelay = `${swayDelay}s`;
+      petalLeaf.style.setProperty('--sway-x', `${swayDistance}px`);
+
+      // Gentle random hue & shape tint variance
+      if (Math.random() > 0.6) {
+        petalLeaf.style.background = 'linear-gradient(140deg, #ffffff 0%, #fce7f3 30%, #f472b6 80%, #be185d 100%)';
+      } else if (Math.random() < 0.25) {
+        petalLeaf.style.background = 'linear-gradient(125deg, #ffffff 0%, #ffe4e6 40%, #fb7185 85%, #e11d48 100%)';
+      }
+
+      petalNode.appendChild(petalLeaf);
+      container.appendChild(petalNode);
+      petals.push(petalNode);
+    }
+  })();
+</script>
+<script data-purpose="hero-collage-and-curtain-logic">
+  const heroSection = document.getElementById('hero');
+  const col1 = document.getElementById('hero-col-1');
+  const col2 = document.getElementById('hero-col-2');
+  const col3 = document.getElementById('hero-col-3');
+  const col4 = document.getElementById('hero-col-4');
+  const frostedCard = document.getElementById('hero-frosted-card');
+  const heroWordmark = document.getElementById('hero-wordmark');
+  const curtainOverlay = document.getElementById('hero-curtain-overlay');
+  const scrollCue = document.getElementById('hero-initial-scroll-cue');
+  const curtainToggleBtn = document.getElementById('hero-curtain-toggle-btn');
+  const curtainIcon = document.getElementById('hero-curtain-icon');
+  const curtainLabel = document.getElementById('hero-curtain-label');
+  const curtainSlider = document.getElementById('hero-curtain-slider');
+
+  let manualOverride = false;
+
+  // Apply reveal progress value (0 to 1) — wy.html circular clip-path + parallax style
+  function setRevealProgress(p) {
+    const progress = Math.max(0, Math.min(1, p));
+    
+    // Subtle vertical parallax + gentle curtain parting like wy.html
+    const leftOffset = -4 * progress;
+    const rightOffset = 4 * progress;
+    
+    col1.style.transform = `translate3d(${leftOffset * 1.1}vw, ${-3.5 * progress}vh, 0)`;
+    col2.style.transform = `translate3d(${leftOffset}vw, ${4.5 * progress}vh, 0)`;
+    col3.style.transform = `translate3d(${rightOffset}vw, ${-5 * progress}vh, 0)`;
+    col4.style.transform = `translate3d(${rightOffset * 1.1}vw, ${3 * progress}vh, 0)`;
+
+    // Soft ambient veil + circular clip-path reveal (0% -> 78% like wy.html)
+    curtainOverlay.style.opacity = (progress * 0.7).toString();
+    const radiusPct = (progress * 78).toFixed(2);
+    frostedCard.style.setProperty('--reveal-r', `${radiusPct}%`);
+
+    if (heroWordmark) {
+      const textAlpha = Math.max(0, Math.min(1, (progress - 0.08) / 0.5));
+      const textScale = 0.88 + 0.12 * textAlpha;
+      heroWordmark.style.opacity = textAlpha.toString();
+      heroWordmark.style.transform = `scale(${textScale})`;
+    }
+
+    if (scrollCue) {
+      scrollCue.style.opacity = (1 - progress * 2.5 > 0 ? 1 - progress * 2.5 : 0).toString();
+    }
+
+    // Sync preview slider
+    if (curtainSlider && !manualOverride) {
+      curtainSlider.value = Math.round(progress * 100);
+    }
+  }
+
+  // Initialize hidden state at 0%
+  setRevealProgress(0);
+
+  // Scroll listener for sticky 200vh container
+  window.addEventListener('scroll', () => {
+    if (manualOverride) return;
+    const heroRect = heroSection.getBoundingClientRect();
+    const heroHeight = heroSection.offsetHeight;
+    const viewHeight = window.innerHeight;
+    
+    // Total scrollable range inside 200vh
+    const maxScroll = heroHeight - viewHeight;
+    const currentScroll = -heroRect.top;
+    
+    if (maxScroll > 0) {
+      const p = currentScroll / maxScroll;
+      setRevealProgress(p);
+    }
+  }, { passive: true });
+
+  // Interactive Mini Preview Controls
+  let isCurtainOpen = false;
+  if (curtainToggleBtn) {
+    curtainToggleBtn.addEventListener('click', () => {
+      manualOverride = true;
+      isCurtainOpen = !isCurtainOpen;
+      const targetP = isCurtainOpen ? 1 : 0;
+      setRevealProgress(targetP);
+      curtainSlider.value = targetP * 100;
+      curtainLabel.textContent = isCurtainOpen ? 'Đóng rèm' : 'Mở rèm';
+      curtainIcon.textContent = isCurtainOpen ? '✕' : '◫';
+      
+      // Auto-release manual override after 4s so scrolling works naturally
+      setTimeout(() => { manualOverride = false; }, 4000);
+    });
+  }
+
+  if (curtainSlider) {
+    curtainSlider.addEventListener('input', (e) => {
+      manualOverride = true;
+      const p = parseFloat(e.target.value) / 100;
+      setRevealProgress(p);
+      isCurtainOpen = p > 0.5;
+      curtainLabel.textContent = isCurtainOpen ? 'Đóng rèm' : 'Mở rèm';
+      curtainIcon.textContent = isCurtainOpen ? '✕' : '◫';
+    });
+
+    curtainSlider.addEventListener('change', () => {
+      setTimeout(() => { manualOverride = false; }, 2000);
+    });
+  }
+</script>
+<script data-purpose="3d-carousel-logic">
+    // Arrange 11 3D items along a circular cylinder track
+    const cylinder = document.getElementById('cylinder');
+    const items = document.querySelectorAll('.carousel-item-3d');
+    const totalItems = items.length;
+    const radius = 430; // Radius distance for nice spacing in 3D perspective
+    let currentAngle = 0;
+    let rotationSpeed = 0.35;
+    let isSpinning = true;
+    let direction = 1; // 1 = clockwise, -1 = counterclockwise
+    let animationFrameId = null;
+
+    // Distribute cylinder elements radially
+    items.forEach((item, index) => {
+      const angle = (360 / totalItems) * index;
+      item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+    });
+
+    // Continuous smooth animation loop
+    function animateCarousel() {
+      if (isSpinning) {
+        currentAngle += rotationSpeed * direction;
+        cylinder.style.transform = `rotateY(${currentAngle}deg)`;
+      }
+      animationFrameId = requestAnimationFrame(animateCarousel);
+    }
+
+    animateCarousel();
+
+    // Pause when user leaves tab to save CPU
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        isSpinning = false;
+      } else {
+        isSpinning = true;
+      }
+    });
+
+    // Carousel Controls Event Handlers
+    const toggleSpinBtn = document.getElementById('toggle-spin-btn');
+    const spinIcon = document.getElementById('spin-icon');
+    const spinBtnLabel = document.getElementById('spin-btn-label');
+    const reverseDirBtn = document.getElementById('reverse-dir-btn');
+    const speedSlider = document.getElementById('speed-slider');
+
+    toggleSpinBtn.addEventListener('click', () => {
+      isSpinning = !isSpinning;
+      spinIcon.textContent = isSpinning ? '⏸' : '▶';
+      spinBtnLabel.textContent = isSpinning ? 'Tạm dừng' : 'Tiếp tục';
+    });
+
+    reverseDirBtn.addEventListener('click', () => {
+      direction *= -1;
+    });
+
+    speedSlider.addEventListener('input', (e) => {
+      rotationSpeed = parseFloat(e.target.value) * 0.1;
+    });
+  </script>
+<script data-purpose="lightbox-logic">
+    // Lightbox Modal Logic
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img');
+    const modalTitle = document.getElementById('lightbox-title');
+    const modalDesc = document.getElementById('lightbox-desc');
+
+    function openLightbox(imgSrc, title, desc) {
+      modalImg.src = imgSrc;
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      // Smooth fade in
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modal.classList.add('opacity-100');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      modal.classList.remove('opacity-100');
+      modal.classList.add('opacity-0');
+      setTimeout(() => {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }, 300);
+    }
+
+    // Close on clicking outside container
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeLightbox();
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeLightbox();
+      }
+    });
+  </script>
+<!-- END: ScriptsForInteractivity -->
+
+
+</body></html>
