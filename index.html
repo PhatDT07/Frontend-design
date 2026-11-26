@@ -134,63 +134,109 @@
     }
   </style>
 <style data-purpose="hero-editorial-collage">
-    /* Scroll-driven Hero Asymmetric Collage Styling */
+    /* Scroll-driven Hero 4-Column Staggered 4:5 Mosaic (wy.html style) */
     .hero-scroll-track {
-      height: 200vh;
+      height: 190vh;
+      height: 190dvh;
       position: relative;
     }
 
     .hero-sticky-stage {
       position: sticky;
       top: 0;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
+      height: 100dvh;
       overflow: hidden;
-      background: #FFF7FA;
+      background: linear-gradient(180deg, #FFF7FA 0%, #FDF2F8 55%, #FCE7F3 100%);
+      isolation: isolate;
     }
 
     .hero-collage-grid {
+      position: absolute;
+      inset: 0;
       display: grid;
-      grid-template-columns: 24% 26% 24% 26%;
-      grid-template-rows: 100%;
-      gap: 6px;
-      width: 100vw;
-      height: 100vh;
-      background-color: #FCE7F3;
-      transition: transform 0.1s linear;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 0 10px;
+      align-items: start;
+      width: 100%;
+      height: 100%;
+      pointer-events: auto;
     }
 
     .hero-col {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      height: 100%;
-      min-height: 0;
-      overflow: hidden;
+      gap: 10px;
       will-change: transform;
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    /* Staggered vertical rhythm like wy.html */
+    #hero-col-1 { margin-top: 8%; }
+    #hero-col-2 { margin-top: -14%; }
+    #hero-col-3 { margin-top: 22%; }
+    #hero-col-4 { margin-top: -6%; }
 
     .hero-slot {
       position: relative;
-      min-height: 0;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      flex: 0 0 auto;
       overflow: hidden;
+      border-radius: 12px;
       background-color: #FDF2F8;
+      box-shadow: 0 8px 22px -6px rgba(244, 114, 182, 0.22);
     }
 
     .hero-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: 50% 22%;
       display: block;
       transform: translate(var(--tx, 0%), var(--ty, 0%)) scale(var(--scale, 1));
       transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s ease;
-      filter: brightness(0.96) contrast(1.02);
+      filter: brightness(0.97) contrast(1.02);
     }
 
     .hero-slot:hover img {
-      transform: translate(var(--tx, 0%), var(--ty, 0%)) scale(calc(var(--scale, 1) * 1.04));
+      transform: translate(var(--tx, 0%), var(--ty, 0%)) scale(calc(var(--scale, 1) * 1.05));
       filter: brightness(1.04) contrast(1.05);
+    }
+
+    /* Soft atmospheric top & bottom fade veil like wy.html */
+    .hero-edge-veil {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 247, 250, 0.65) 0%,
+        rgba(255, 247, 250, 0.08) 16%,
+        rgba(255, 247, 250, 0) 58%,
+        rgba(253, 242, 248, 0.55) 84%,
+        #FDF2F8 100%
+      );
+    }
+
+    @media (max-width: 640px) {
+      .hero-collage-grid {
+        gap: 6px;
+        padding: 0 6px;
+      }
+      .hero-col {
+        gap: 6px;
+      }
+      .hero-slot {
+        border-radius: 8px;
+      }
+      #hero-col-1 { margin-top: 72px; }
+      #hero-col-2 { margin-top: 22px; }
+      #hero-col-3 { margin-top: 118px; }
+      #hero-col-4 { margin-top: 44px; }
     }
 
     /* Borderless Circular Clip-Path Reveal (wy.html style) */
@@ -200,7 +246,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at center, rgba(255, 247, 250, 0.82) 0%, rgba(253, 242, 248, 0.55) 45%, rgba(252, 231, 243, 0.22) 100%);
+      background: radial-gradient(circle at center, rgba(255, 247, 250, 0.85) 0%, rgba(253, 242, 248, 0.58) 45%, rgba(252, 231, 243, 0.24) 100%);
       backdrop-filter: blur(12px) saturate(140%);
       -webkit-backdrop-filter: blur(12px) saturate(140%);
       clip-path: circle(var(--reveal-r, 0%) at 50% 50%);
@@ -212,13 +258,13 @@
 
     .hero-wordmark {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 11vw, 9.5rem);
+      font-size: clamp(2.85rem, 11vw, 9.5rem);
       font-weight: 700;
       line-height: 1;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       text-align: center;
-      padding: 0 1.5rem;
+      padding: 0 1.25rem;
       margin: 0;
       filter: drop-shadow(0 10px 32px rgba(244, 114, 182, 0.35));
       will-change: transform, opacity;
@@ -237,43 +283,140 @@
     }
   </style>
 <style data-purpose="carousel-3d-styles">
-    /* 3D Carousel Cylinder Engine */
+    /* True 3D Ring Carousel Engine (wy.html style with angled top-down camera & reflections) */
     .carousel-stage {
-      perspective: 1200px;
-      perspective-origin: 50% 45%;
+      --car-count: 11;
+      --car-diameter: 760px;
+      --car-radius: calc(var(--car-diameter) / 2);
+      --car-item-w: 196px;
+      --car-item-h: 280px;
+      --car-perspective: 1050px;
+      position: relative;
+      width: var(--car-diameter);
+      max-width: 100%;
+      height: 470px;
+      margin: 0 auto;
+      perspective: var(--car-perspective);
+      perspective-origin: 50% 18%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: pan-y;
+      user-select: none;
+      cursor: grab;
+    }
+
+    .carousel-stage:active {
+      cursor: grabbing;
+    }
+
+    .carousel-tilt {
+      position: relative;
+      width: var(--car-diameter);
+      height: var(--car-item-h);
+      transform-style: preserve-3d;
+      transform: translateZ(calc(var(--car-radius) * -1)) rotateX(-7deg);
     }
 
     .carousel-cylinder {
-      width: 240px;
-      height: 330px;
+      width: 100%;
+      height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.15s ease-out;
+      will-change: transform;
     }
 
     .carousel-item-3d {
+      --rot: calc(360deg / var(--car-count) * var(--i));
       position: absolute;
-      width: 240px;
-      height: 330px;
-      left: 0;
+      width: var(--car-item-w);
+      height: var(--car-item-h);
+      left: calc(50% - var(--car-item-w) / 2);
       top: 0;
-      border-radius: 1.25rem;
-      border: 2px solid rgba(255, 255, 255, 0.9);
-      box-shadow: 0 12px 32px rgba(244, 114, 182, 0.25), 0 2px 6px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      backface-visibility: hidden;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      border-radius: 0.75rem;
+      border: 1.5px solid rgba(255, 255, 255, 0.92);
+      box-shadow: 0 12px 28px rgba(244, 114, 182, 0.24), 0 2px 6px rgba(0, 0, 0, 0.08);
+      transform-style: preserve-3d;
+      backface-visibility: visible;
+      transform: rotateY(var(--rot)) translateZ(var(--car-radius));
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .carousel-item-3d img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 22%;
+      border-radius: inherit;
+      display: block;
+      pointer-events: none;
     }
 
     .carousel-item-3d:hover {
       border-color: #F472B6;
-      box-shadow: 0 0 35px rgba(244, 114, 182, 0.6), 0 8px 24px rgba(236, 72, 153, 0.3);
+      box-shadow: 0 0 36px rgba(244, 114, 182, 0.6), 0 10px 26px rgba(236, 72, 153, 0.3);
+      transform: rotateY(var(--rot)) translateZ(calc(var(--car-radius) * 1.08));
     }
 
-    /* Reflective Floor */
-    .floor-reflection {
-      background: radial-gradient(ellipse at 50% 50%, rgba(244, 114, 182, 0.35) 0%, rgba(253, 242, 248, 0.7) 60%, transparent 100%);
-      transform: rotateX(85deg) translateZ(-60px);
+    /* Soft mirrored reflection underneath every card */
+    .carousel-item-3d::after {
+      content: '';
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 100%;
+      height: 55%;
+      border-radius: 0.75rem;
+      background-image: var(--img);
+      background-size: cover;
+      background-position: 50% 22%;
+      transform: scaleY(-1);
+      opacity: 0.26;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent 82%);
+              mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent 82%);
+    }
+
+    /* Reflective circular ground disc beneath the 3D ring */
+    .carousel-ground {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: calc(var(--car-diameter) * 1.15);
+      height: calc(var(--car-diameter) * 1.15);
+      margin-left: calc(var(--car-diameter) * -0.575);
+      margin-top: calc(var(--car-diameter) * -0.575);
+      border-radius: 9999px;
+      background: radial-gradient(circle, rgba(244, 114, 182, 0.32) 12%, rgba(251, 207, 232, 0.22) 42%, transparent 68%);
+      transform: rotateX(90deg) translateZ(calc(var(--car-item-h) / -2 - 14px));
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-stage {
+        --car-diameter: 460px;
+        --car-item-w: 120px;
+        --car-item-h: 172px;
+        --car-perspective: 820px;
+        height: 350px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .carousel-stage {
+        --car-diameter: 310px;
+        --car-item-w: 84px;
+        --car-item-h: 124px;
+        --car-perspective: 620px;
+        height: 280px;
+      }
+      .carousel-item-3d {
+        border-radius: 0.5rem;
+        border-width: 1px;
+      }
+      .carousel-item-3d::after {
+        border-radius: 0.5rem;
+      }
     }
   </style>
 <!-- BEGIN: Sakura Falling Petals Styles -->
@@ -454,7 +597,7 @@
 <div aria-hidden="true" data-purpose="magic-cursor-sparkle-trail-container" id="cursor-sparkle-container"></div>
 <!-- END: Magic Cursor Sparkle Trail Overlay -->
 <!-- BEGIN: Minimal Floating Transparent Navbar -->
-<header class="fixed top-0 left-0 right-0 z-50 px-6 sm:px-12 py-5 transition-all duration-300 backdrop-blur-md bg-white/60 border-b border-pink-200/50 shadow-sm shadow-pink-100/50" id="main-nav-bar">
+<header class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-12 py-3.5 sm:py-5 transition-all duration-300 backdrop-blur-md bg-white/60 border-b border-pink-200/50 shadow-sm shadow-pink-100/50" id="main-nav-bar">
 <div class="w-full flex items-center justify-between">
 <!-- Left Wordmark Brand -->
 <a class="flex items-center gap-2 group cursor-pointer" data-purpose="brand-logo" href="#hero">
@@ -476,45 +619,83 @@
 <!-- BEGIN: EditorialScrollHeroSection (200vh Scroll-Driven Curtain Reveal) -->
 <section class="hero-scroll-track" data-purpose="asymmetric-editorial-collage-hero" id="hero">
 <div class="hero-sticky-stage" id="hero-sticky-stage">
-<!-- Full-Bleed 4-Column Asymmetric Photo Collage Grid -->
+<!-- Full-Bleed 4-Column Staggered 4:5 Portrait Mosaic (wy.html style) -->
 <div class="hero-collage-grid" id="hero-collage-grid">
-<!-- COLUMN 1: ~70% Tall vertical portrait stacked above ~30% cropped portrait -->
+<!-- COLUMN 1: 5 crisp 4:5 portrait tiles -->
 <div class="hero-col hero-col-left" id="hero-col-1">
-<div class="hero-slot h-[70%] shrink-0">
-<img alt="Sân thượng nắng hồng thơ mộng" class="w-full h-full object-cover object-center" data-slot="1" id="hero-slot-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTHel9g_OiG-F5equFiiHXZ5beJJADSyc1Ocmho2qu4eDPwfq0A_JZC-opEiE6S6NkDSFmpN2a_hUOK3ZLAXWRWbyJS-BkNgyKs-CIHK9Vl3_ItVXZbNqztiDcNeP67DAmb4ruKmHKfot5qK7ihGSrpfEga6wDrcBHgkBnpWVXnYYGPvQd6cnJ7F6z8_NYLbebFI9ggcPDHYgcaU-LHFIx1vgfKmguaYlBC5RGCtjiAZ8qnv0AjVCAMw">
+<div class="hero-slot">
+<img alt="Sân thượng nắng hồng thơ mộng" data-slot="1" id="hero-slot-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTHel9g_OiG-F5equFiiHXZ5beJJADSyc1Ocmho2qu4eDPwfq0A_JZC-opEiE6S6NkDSFmpN2a_hUOK3ZLAXWRWbyJS-BkNgyKs-CIHK9Vl3_ItVXZbNqztiDcNeP67DAmb4ruKmHKfot5qK7ihGSrpfEga6wDrcBHgkBnpWVXnYYGPvQd6cnJ7F6z8_NYLbebFI9ggcPDHYgcaU-LHFIx1vgfKmguaYlBC5RGCtjiAZ8qnv0AjVCAMw">
 </div>
-<div class="hero-slot flex-1">
-<img alt="Selfie cận cảnh ngọt ngào" class="w-full h-full object-cover object-[center_20%]" data-slot="2" id="hero-slot-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTMGUQWPDxW8p7r3MdF5Q2HMQt1GfIG-c3jEeB27-DIcQ-CR0u5gVnvxNhoa6ZDi9IIu1Yiv-_zucE-mn_arsMauh7-j_ixnv-IeGEe3RlhMI4eR9Zt0j4_rlcwjwfFOi0_OWk4zWRb2L4wxAyIFBRlPOT0kbo6a3pWsyJDxqIUeBC6mkLmuKZfxjUMHYgz7OdN3yIxjrIGvXftnv5cPAtrDKz_8f0sKd8PmwJG122pDHaluqZsBjSkg">
+<div class="hero-slot">
+<img alt="Selfie cận cảnh ngọt ngào" data-slot="2" id="hero-slot-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTMGUQWPDxW8p7r3MdF5Q2HMQt1GfIG-c3jEeB27-DIcQ-CR0u5gVnvxNhoa6ZDi9IIu1Yiv-_zucE-mn_arsMauh7-j_ixnv-IeGEe3RlhMI4eR9Zt0j4_rlcwjwfFOi0_OWk4zWRb2L4wxAyIFBRlPOT0kbo6a3pWsyJDxqIUeBC6mkLmuKZfxjUMHYgz7OdN3yIxjrIGvXftnv5cPAtrDKz_8f0sKd8PmwJG122pDHaluqZsBjSkg">
+</div>
+<div class="hero-slot">
+<img alt="Giáng sinh ấm áp" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEcveTz_BudgnALr6Az0g70yl4vsJtVgwek98-8Ppl285wrd-3fxzDAUK3lR7GNqImuR5IYnrbde1IzSJ9VfTrlU-Of3dDYMnplUg-M7UU0O2_JcqRtTLsALMfPboHmNs9E1bugAkAonrn17fzoJFPJoC2e192uRVxuRauuGdAwtOtxIhqOvrgaNFYIy4clafQPBIidmBsSEv7ZhZSRM49vxekqfqywioXyVdYFWMURE6bOkdRN8XnJA">
+</div>
+<div class="hero-slot">
+<img alt="Quán cafe nắng ấm" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEGSk--Jl7kgkYXz56kDr8eQGlRXiqgvu7WJwSU6eudn97GIfMSiPyveXi5LjGTWGZmBOROVzFqnjKXdWWqxl3EDpNg7FahRrvRfLyu8rd7Z97qSVKs3sWOb2DXaO7hauge2z9XzLdiVekULHfe-G8ueGeoPYwN-xVIReqIfYnh-6zdKMV5Jv6Hd70u0OU4bplXGStowrVMY3fZ-XGuqZrzOkisQl5g43ne9tSo_SeCAX_xY-OSFYk4g">
+</div>
+<div class="hero-slot">
+<img alt="Cầu gỗ hoa dã ngoại" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5IDsvaXLlxxnRxPnmo1oZfaPE2UpBLlG6ZXDoU0ZK11OfkUSG_wYcsZeZuEqzsB8SEETDNeS6H-M3nx7vM-4i4LudQr-1fDPczGny5qKT-oJ6Gp1_h8LLMBGjw1DlrkT2TB5dclwUh1c3cEQfUAh-4rLttQ63CAhlpg3Qr-d3q-EaAXk7DeX_mbBCWdpfBsJ_nPWPcKaLWxv16Ov430lvwF4eCssjosMWj_nzVV16wTSN0RrQU4u22Q">
 </div>
 </div>
-<!-- COLUMN 2: ~32% Horizontal detail stacked above ~58% tall vertical and bottom peek -->
+<!-- COLUMN 2: 5 crisp 4:5 portrait tiles -->
 <div class="hero-col hero-col-left" id="hero-col-2">
-<div class="hero-slot h-[32%] shrink-0">
-<img alt="Phong cách dạo phố cà phê cổ điển" class="w-full h-full object-cover object-center" data-slot="3" id="hero-slot-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwDViPgGLzkECLQNXVAtOrCti1rieKjzmSCV45N45coWNfGkN5boEJaOjVjVvRfbI5tapCGRanipthNZEVXad7klf3UQRHrgUhv57IqVuA4MfP66Vat3UkzpsBhMgAFVvwmK6HBcoRn3AmqfqSY0V6eVONO0wnSWJdeGCX5wOyhNQamPIeumTSNISdhUA_IN1RJj3CW2uzZYl41Z_ixnak--6JuKVOzZaKoeqmA7qif-9Wwkmh16moAg">
+<div class="hero-slot">
+<img alt="Phong cách dạo phố cà phê cổ điển" data-slot="3" id="hero-slot-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwDViPgGLzkECLQNXVAtOrCti1rieKjzmSCV45N45coWNfGkN5boEJaOjVjVvRfbI5tapCGRanipthNZEVXad7klf3UQRHrgUhv57IqVuA4MfP66Vat3UkzpsBhMgAFVvwmK6HBcoRn3AmqfqSY0V6eVONO0wnSWJdeGCX5wOyhNQamPIeumTSNISdhUA_IN1RJj3CW2uzZYl41Z_ixnak--6JuKVOzZaKoeqmA7qif-9Wwkmh16moAg">
 </div>
-<div class="hero-slot flex-1">
-<img alt="Duyên dáng phong cách nữ sinh thanh lịch" class="w-full h-full object-cover object-center" data-slot="4" id="hero-slot-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARzxagjwXAiDLWXiQ7cfrD2DQdOgyLVDALuhejAnkzfA5MNuVFSEJ7THOgq6t2W4jVd1lZR-7lkwPdGAY-j8AZXBiGwZBkvYf4ovuLL2nM9DFBEAVnXzV7_vXtCltKTEfeb5eVIgeeoxU6KdzHXySuZqP8bOfstaQXj70MMhX8zGTm5dIr7OZUyl-MPagyZSWkbXHWY1VVa2p6kSsg01Q6_KtuhXsU0Iqor9pLw-E3V7u60Cl6n3E0FQ">
+<div class="hero-slot">
+<img alt="Duyên dáng phong cách nữ sinh thanh lịch" data-slot="4" id="hero-slot-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARzxagjwXAiDLWXiQ7cfrD2DQdOgyLVDALuhejAnkzfA5MNuVFSEJ7THOgq6t2W4jVd1lZR-7lkwPdGAY-j8AZXBiGwZBkvYf4ovuLL2nM9DFBEAVnXzV7_vXtCltKTEfeb5eVIgeeoxU6KdzHXySuZqP8bOfstaQXj70MMhX8zGTm5dIr7OZUyl-MPagyZSWkbXHWY1VVa2p6kSsg01Q6_KtuhXsU0Iqor9pLw-E3V7u60Cl6n3E0FQ">
+</div>
+<div class="hero-slot">
+<img alt="Dạ tiệc váy công chúa lộng lẫy" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_bo6gMfyyT_xx-QPIrZbzOCXPXgJIoBvpL8G-A2ai1mzbsodoBEoSDU5AwqU3LKWa6QNubY_desfIkKCkfM4pD6BDntKH6EUcRdzUoezAuElUx7NBMEMQyboLPtYpy3uG1GWFfKVC5zxa7A2bQiR86gCw2F5qtqBNpOvmpweEuxK9PI8Dw3sclHY2juVu0KqFB56PX2IPU0Xco2ggyhz-emrJz4iC7QBUFH_uvLzHAPbGNasTZDzNUQ">
+</div>
+<div class="hero-slot">
+<img alt="Chùa cổ hoa huệ hồng" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8fFFbZcK-rFFOY7tAM3yZPMJT0rWwPrXr0PayYfiAjSrh5x_fnm9bF1QWd0qvOH31d8xYdxvx2hmdXQo8-zeJK8fjiisvsdrLHWMVTWx2y_5zKHmeEMn3GIqAPojuEXgSgQYs7Oa30j8QJPgxzJb6ElgliGD7w0ZyIN3ENhYXmtJoAPnWzSzQMU6Mp7ZO3K9CHw1McATDjYDB7uLjTdOoiErQpZfVbPu6v7iMd3gZFUaDG1QxEAQ0YQ">
+</div>
+<div class="hero-slot">
+<img alt="Góc phố đỏ cafe" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0_pX-SpK9WVAWbpt89IfOv9TAsAJ4ZkVgvPBgtsCNFlOoNhy5yLO4nJN-VHbicUnzDnN4V3vGmRuoZkT4OeKoIMyDdBNUAD3uqo-qsuknuLy0-r1p_H-E1L2rRn4wGv09aJP9sG4NTSgP5ZolG2aiFfPvM4F0dN8qVCgc1khXLeRg3LldajH9Bq7wUd-IQfmQxqoN9DrOy-NVD3tr0CAXJrfg8Sj6euQbVc5KcJmso4oKlZc7Vt2Owg">
 </div>
 </div>
-<!-- COLUMN 3: ~34% top mirror selfie stacked above ~66% dreamy vertical portrait -->
+<!-- COLUMN 3: 5 crisp 4:5 portrait tiles -->
 <div class="hero-col hero-col-right" id="hero-col-3">
-<div class="hero-slot h-[34%] shrink-0">
-<img alt="Selfie máy ảnh hồng hoài niệm" class="w-full h-full object-cover object-[44%_18%]" data-slot="5" id="hero-slot-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMwy3tU1Jfv3r-3CeJkdpmOeq2_KL_S6SsI31IXl6bcc14jblDIWbc9DbjwIhvAb6ziyTf7ct1KF-j_WPRxON05nhLxqwe_40IFWbyl71GnjcHZr926jq0z_Ri57xmcxNv9px6TEgIAP5uohkT2wlg0Cwo-vIpGivQR0Td0NXBXc_EUcnuNn-Qd5vcRBhuurw6xOUni_MJfeTeu8iS7IwNHO4Tvbw6ZsqhmEWOx8GaPDTKcbzo1oNrIg" style="--tx: 5%; --ty: 4%; --scale: 1.14;">
+<div class="hero-slot">
+<img alt="Selfie máy ảnh hồng hoài niệm" data-slot="5" id="hero-slot-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMwy3tU1Jfv3r-3CeJkdpmOeq2_KL_S6SsI31IXl6bcc14jblDIWbc9DbjwIhvAb6ziyTf7ct1KF-j_WPRxON05nhLxqwe_40IFWbyl71GnjcHZr926jq0z_Ri57xmcxNv9px6TEgIAP5uohkT2wlg0Cwo-vIpGivQR0Td0NXBXc_EUcnuNn-Qd5vcRBhuurw6xOUni_MJfeTeu8iS7IwNHO4Tvbw6ZsqhmEWOx8GaPDTKcbzo1oNrIg" style="object-position: 43% 20%;">
 </div>
-<div class="hero-slot flex-1">
-<img alt="Nét cá tính trước background ấn tượng" class="w-full h-full object-cover object-[52%_80%]" data-slot="6" id="hero-slot-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd4t-LMTQQSaoEzqsGyis7excs3_KQMeVWJ5rDRKUOtLf2Y5ClkT3pkHtS8xcc3JUupo-d0uWucwBnK1J2f9EnlJHSfPcNNKGjpEG2fsu1snuPVc9CunGakTJSEyC0tr8xOSqy0dgKknGgRW_CD3nl7626n4XZxzuDQoXvWQa2ziHBMyzkKo6K2UrNG-jiilg9bm9EbHEHpr-E0uYmpldxocWrtttvmgXAXj076zyodCJ0iekKq1ni2w" style="--tx: -2%; --ty: -9%; --scale: 1.24;">
+<div class="hero-slot">
+<img alt="Nét cá tính trước background ấn tượng" data-slot="6" id="hero-slot-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd4t-LMTQQSaoEzqsGyis7excs3_KQMeVWJ5rDRKUOtLf2Y5ClkT3pkHtS8xcc3JUupo-d0uWucwBnK1J2f9EnlJHSfPcNNKGjpEG2fsu1snuPVc9CunGakTJSEyC0tr8xOSqy0dgKknGgRW_CD3nl7626n4XZxzuDQoXvWQa2ziHBMyzkKo6K2UrNG-jiilg9bm9EbHEHpr-E0uYmpldxocWrtttvmgXAXj076zyodCJ0iekKq1ni2w" style="object-position: 52% 80%; --tx: -2%; --ty: -9%; --scale: 1.24;">
+</div>
+<div class="hero-slot">
+<img alt="Giáng sinh tinh khôi" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASJatpBFl9Xuz49VsJjVcOPFmS53LhIYlb7Wa0C-PvnWwU0q32SzD3AdICTLrdz5Rk-fiui8_I00QgSzzrUNOUKo0NOISMJdOkxwmLsA2O-G4_s7LRlNP7sjJ-J0vcyEZRlXJtMQUie-Z55Zvj-zLhmOI2L1ICnhE01EL3G3nVaxJiPcKmso_i96Kp7fmazHMYYd36Hfb9oGcKxld1QWQR6OB181W6SSImeBE6zlAMd7LC-1_8_sli3A">
+</div>
+<div class="hero-slot">
+<img alt="Áo dài nón lá sông nước duyên dáng" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbvVvMlUdp5W4Rl3BT-i4-4XY-PUHKfkKc15YJ619lel0v0GkdOFt7Nr90oJq6y-wbDNKdYvARkK4ClcFZVQtaDCJ2wDUly-v2JBAiwWQsu3HAOs__mNkbwq5Eh5IVfqf2OgS0Mw2Wi1isncwi-DbJLdX_VeSUPSX1q5slJaA2AnZoxYkpG1q0J339F_Pc_3YAo8wo6cQycOMkk9wy94dYxWyS1UN4fbsaXeuzwUysG59k-HpW0n6l8A">
+</div>
+<div class="hero-slot">
+<img alt="Selfie công chúa váy dạ hội" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMaM6nsO2B5ymTpShbwyUt1-xwX-xSGo6vQ7UX-TV3jZzvrj4IqQI8Numg5ktZ7Xq9_EdTNkPFAFctk3T7iX_wVRuWB-26mXKOhId89dTjI0h4XZE7sA-EpngU9SVszx7O7qYAl6b7_J8AO8Is9zvdrguYXLLDIShQ2nwH9FYJfC8EObiczUnm_cAGLR_7LDnG5NxdiY6dWK0HB47UYgMvGA_DQNt0i9yrGJoMlr7GzbslEWsFNyMAoQ">
 </div>
 </div>
-<!-- COLUMN 4: ~45% top coat/bag portrait stacked above ~55% selfie -->
+<!-- COLUMN 4: 5 crisp 4:5 portrait tiles -->
 <div class="hero-col hero-col-right" id="hero-col-4">
-<div class="hero-slot h-[45%] shrink-0">
-<img alt="Dừng chân bên bậc thềm đá cổ kính" class="w-full h-full object-cover object-center" data-slot="7" id="hero-slot-7" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATaOVPBjYkOGVDHmwNEwjPTXh1XE2h7GJ3oRGOuGOYeeM3xi6bfieqNz12Ix08u603AIETFp-dMUc9JfMRx5nzuexFR6Eaf2m1HSoCR3smRWlMnIWLgoYPVB4PhxB3yNkimrwU7hG4SoYgp-zRJZC-eFhGAzOSStDgtfN5goIm9x0ng4PGiw8CsSvaZalpvgV4RFBaoyv6aAT1rAnWblMf8QN8XZTlp-T83gDzLVVy6vRJT0NPEQKpuA">
+<div class="hero-slot">
+<img alt="Dừng chân bên bậc thềm đá cổ kính" data-slot="7" id="hero-slot-7" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATaOVPBjYkOGVDHmwNEwjPTXh1XE2h7GJ3oRGOuGOYeeM3xi6bfieqNz12Ix08u603AIETFp-dMUc9JfMRx5nzuexFR6Eaf2m1HSoCR3smRWlMnIWLgoYPVB4PhxB3yNkimrwU7hG4SoYgp-zRJZC-eFhGAzOSStDgtfN5goIm9x0ng4PGiw8CsSvaZalpvgV4RFBaoyv6aAT1rAnWblMf8QN8XZTlp-T83gDzLVVy6vRJT0NPEQKpuA">
 </div>
-<div class="hero-slot flex-1">
-<img alt="Ngoc Hien selfie dễ thương trong xe" class="w-full h-full object-cover object-center" data-slot="8" id="hero-slot-8" src="hero-slot-8.jpg">
+<div class="hero-slot">
+<img alt="Ngoc Hien selfie dễ thương trong xe" data-slot="8" id="hero-slot-8" src="hero-slot-8.jpg" style="object-position: 50% 42%;">
+</div>
+<div class="hero-slot">
+<img alt="Thưởng thức bánh cafe" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_l78SyuuCwF_ZW4Dtsm1My2Y7DKDUkHjUdqLm08fNf84bR_-rpLwMcD0dbtux6RaEKf4CbGn6JYizO8QPr5V5Hzp0kkWufnMPjB6sQKNRXfzfumW5PUOHJlcKmNcsnmmBEbRVMpmuoklxGtGd4n0rJmsW7qfpfx67XrmJ0GARBohs0A3s9Gdg5Yw2qZ-Ht7j9VRZw9D3qhIjHHAb-4klO27kWOMa0JO2x4Y4Kc9rbU4d5WKvu0sDhnQ">
+</div>
+<div class="hero-slot">
+<img alt="Cây hoa giấy rực rỡ nắng vàng" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOiMAqtpcY4ZGJb8BgevLZUXPxWInPDN4BeD4mwTUPtTllHDIKT-YbtZDegHXh3axc0v7qNY4cf643S4pWrWo0cAKRJGX4pqruTYmfnjh3QxOvKmHRH9JKH0Xpayk8slYLj64Wnvnh4iRhXgpVdNSDvTHqbzlEbf9NzjanrY6TyzHIPsM3TWtTQDQJnDq8xWIhlH0c2fsZVTf6wQ4EH4zZogXJjoke5PPPC0piJHVB_G1NffEVuCMVeQ">
+</div>
+<div class="hero-slot">
+<img alt="Đèn lồng kiến trúc mộc" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHe5VMwl3NL1yoqWYHlxpm8Grjy8xh7_MxJDRdFZTTaJ6-zk6EcQqhR2DgSbyCJZr4T9uSTEk5cio8xPhsIwK14EgFeMJaltpK6nxC7BSBOPXatzUHJRTJ6Gr1Ye5a7zVZZZlaa87gQFzGivrddexGsLa4x-yjalBlRMu4SigSMD9DU1ucBjxvqShXYw01Qpap_kK0Ww9cWB_3jrLauVmHKNqCOBwKB1k3YCy7JUgO5FKX61SDtrLzPw">
 </div>
 </div>
 </div>
+<!-- Soft Top & Bottom Edge Fade Veil -->
+<div aria-hidden="true" class="hero-edge-veil"></div>
 <!-- Ambient Curtain Overlay during center reveal -->
 <div class="hero-curtain-overlay" id="hero-curtain-overlay"></div>
 <!-- Borderless Circular-Reveal Wordmark (Scroll-revealed, wy.html style) -->
@@ -535,9 +716,9 @@
 </div>
 </div>
 <!-- Floating Scroll Indicator on Stage when at top -->
-<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center gap-1.5 transition-opacity duration-300" id="hero-initial-scroll-cue">
-<span class="text-[10px] font-mono tracking-widest text-brand-plumdark/80 uppercase font-semibold">CUỘN XUỐNG ĐỂ KHÁM PHÁ</span>
-<div class="w-4 h-7 rounded-full border border-pink-400/50 flex justify-center pt-1 bg-white/40">
+<div class="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center gap-1.5 transition-opacity duration-300" id="hero-initial-scroll-cue">
+<span class="px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-pink-200/80 shadow-sm text-[10px] font-mono tracking-widest text-brand-darkrose uppercase font-bold whitespace-nowrap">CUỘN XUỐNG ĐỂ KHÁM PHÁ</span>
+<div class="w-4 h-7 rounded-full border border-pink-400/60 flex justify-center pt-1 bg-white/70">
 <div class="w-1 h-1.5 rounded-full bg-pink-500 animate-bounce"></div>
 </div>
 </div>
@@ -718,70 +899,72 @@
 </section>
 <!-- END: ButterflyWings13GallerySection -->
 <!-- BEGIN: ThreeDimensionalCarouselSection -->
-<section class="relative py-28 px-4 z-10 overflow-hidden" data-purpose="3d-orbit-carousel-showcase" id="vong-xoay-3d">
+<section class="relative py-20 sm:py-28 px-4 z-10 overflow-hidden" data-purpose="3d-orbit-carousel-showcase" id="vong-xoay-3d">
 <!-- Ambient Glow Behind Carousel -->
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-pink-300/30 rounded-full filter blur-[130px] pointer-events-none -z-10"></div>
 <!-- Section Title & Description -->
-<div class="max-w-4xl mx-auto text-center mb-16">
-<h2 class="font-serif text-5xl sm:text-7xl font-bold text-brand-darkrose tracking-wider mb-4">
+<div class="max-w-4xl mx-auto text-center mb-8 sm:mb-14">
+<h2 class="font-serif text-4xl sm:text-7xl font-bold text-brand-darkrose tracking-wider mb-3">
           VÒNG XOAY 3D
         </h2>
 
 </div>
-<!-- 3D Carousel Stage -->
-<div class="carousel-stage w-full max-w-5xl mx-auto h-[460px] flex items-center justify-center relative">
+<!-- 3D Carousel Stage (wy.html true 3D ring with angled camera & reflections) -->
+<div class="carousel-stage" id="carousel-stage">
+<div class="carousel-tilt">
 <!-- Rotating Cylinder Container Target -->
 <div class="carousel-cylinder" id="cylinder">
 <!-- Item 1 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="0" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCbvVvMlUdp5W4Rl3BT-i4-4XY-PUHKfkKc15YJ619lel0v0GkdOFt7Nr90oJq6y-wbDNKdYvARkK4ClcFZVQtaDCJ2wDUly-v2JBAiwWQsu3HAOs__mNkbwq5Eh5IVfqf2OgS0Mw2Wi1isncwi-DbJLdX_VeSUPSX1q5slJaA2AnZoxYkpG1q0J339F_Pc_3YAo8wo6cQycOMkk9wy94dYxWyS1UN4fbsaXeuzwUysG59k-HpW0n6l8A', '3D Orbit #01 · Sông Nước Duyên Dáng', 'Áo dài nón lá sông nước duyên dáng, thuần khiết dịu dàng.')">
-<img alt="Áo dài nón lá sông nước duyên dáng" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbvVvMlUdp5W4Rl3BT-i4-4XY-PUHKfkKc15YJ619lel0v0GkdOFt7Nr90oJq6y-wbDNKdYvARkK4ClcFZVQtaDCJ2wDUly-v2JBAiwWQsu3HAOs__mNkbwq5Eh5IVfqf2OgS0Mw2Wi1isncwi-DbJLdX_VeSUPSX1q5slJaA2AnZoxYkpG1q0J339F_Pc_3YAo8wo6cQycOMkk9wy94dYxWyS1UN4fbsaXeuzwUysG59k-HpW0n6l8A">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="0" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCbvVvMlUdp5W4Rl3BT-i4-4XY-PUHKfkKc15YJ619lel0v0GkdOFt7Nr90oJq6y-wbDNKdYvARkK4ClcFZVQtaDCJ2wDUly-v2JBAiwWQsu3HAOs__mNkbwq5Eh5IVfqf2OgS0Mw2Wi1isncwi-DbJLdX_VeSUPSX1q5slJaA2AnZoxYkpG1q0J339F_Pc_3YAo8wo6cQycOMkk9wy94dYxWyS1UN4fbsaXeuzwUysG59k-HpW0n6l8A', '3D Orbit #01 · Sông Nước Duyên Dáng', 'Áo dài nón lá sông nước duyên dáng, thuần khiết dịu dàng.')" style="--i: 0; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCbvVvMlUdp5W4Rl3BT-i4-4XY-PUHKfkKc15YJ619lel0v0GkdOFt7Nr90oJq6y-wbDNKdYvARkK4ClcFZVQtaDCJ2wDUly-v2JBAiwWQsu3HAOs__mNkbwq5Eh5IVfqf2OgS0Mw2Wi1isncwi-DbJLdX_VeSUPSX1q5slJaA2AnZoxYkpG1q0J339F_Pc_3YAo8wo6cQycOMkk9wy94dYxWyS1UN4fbsaXeuzwUysG59k-HpW0n6l8A');">
+<img alt="Áo dài nón lá sông nước duyên dáng" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbvVvMlUdp5W4Rl3BT-i4-4XY-PUHKfkKc15YJ619lel0v0GkdOFt7Nr90oJq6y-wbDNKdYvARkK4ClcFZVQtaDCJ2wDUly-v2JBAiwWQsu3HAOs__mNkbwq5Eh5IVfqf2OgS0Mw2Wi1isncwi-DbJLdX_VeSUPSX1q5slJaA2AnZoxYkpG1q0J339F_Pc_3YAo8wo6cQycOMkk9wy94dYxWyS1UN4fbsaXeuzwUysG59k-HpW0n6l8A">
 </div>
 <!-- Item 2 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="1" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCMaM6nsO2B5ymTpShbwyUt1-xwX-xSGo6vQ7UX-TV3jZzvrj4IqQI8Numg5ktZ7Xq9_EdTNkPFAFctk3T7iX_wVRuWB-26mXKOhId89dTjI0h4XZE7sA-EpngU9SVszx7O7qYAl6b7_J8AO8Is9zvdrguYXLLDIShQ2nwH9FYJfC8EObiczUnm_cAGLR_7LDnG5NxdiY6dWK0HB47UYgMvGA_DQNt0i9yrGJoMlr7GzbslEWsFNyMAoQ', '3D Orbit #02 · Công Chúa Lộng Lẫy', 'Selfie công chúa váy dạ hội lung linh với nét đẹp đài các.')">
-<img alt="Selfie công chúa váy dạ hội lung linh" class="w-full h-full object-cover object-[center_20%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMaM6nsO2B5ymTpShbwyUt1-xwX-xSGo6vQ7UX-TV3jZzvrj4IqQI8Numg5ktZ7Xq9_EdTNkPFAFctk3T7iX_wVRuWB-26mXKOhId89dTjI0h4XZE7sA-EpngU9SVszx7O7qYAl6b7_J8AO8Is9zvdrguYXLLDIShQ2nwH9FYJfC8EObiczUnm_cAGLR_7LDnG5NxdiY6dWK0HB47UYgMvGA_DQNt0i9yrGJoMlr7GzbslEWsFNyMAoQ">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="1" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCMaM6nsO2B5ymTpShbwyUt1-xwX-xSGo6vQ7UX-TV3jZzvrj4IqQI8Numg5ktZ7Xq9_EdTNkPFAFctk3T7iX_wVRuWB-26mXKOhId89dTjI0h4XZE7sA-EpngU9SVszx7O7qYAl6b7_J8AO8Is9zvdrguYXLLDIShQ2nwH9FYJfC8EObiczUnm_cAGLR_7LDnG5NxdiY6dWK0HB47UYgMvGA_DQNt0i9yrGJoMlr7GzbslEWsFNyMAoQ', '3D Orbit #02 · Công Chúa Lộng Lẫy', 'Selfie công chúa váy dạ hội lung linh với nét đẹp đài các.')" style="--i: 1; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCMaM6nsO2B5ymTpShbwyUt1-xwX-xSGo6vQ7UX-TV3jZzvrj4IqQI8Numg5ktZ7Xq9_EdTNkPFAFctk3T7iX_wVRuWB-26mXKOhId89dTjI0h4XZE7sA-EpngU9SVszx7O7qYAl6b7_J8AO8Is9zvdrguYXLLDIShQ2nwH9FYJfC8EObiczUnm_cAGLR_7LDnG5NxdiY6dWK0HB47UYgMvGA_DQNt0i9yrGJoMlr7GzbslEWsFNyMAoQ');">
+<img alt="Selfie công chúa váy dạ hội lung linh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMaM6nsO2B5ymTpShbwyUt1-xwX-xSGo6vQ7UX-TV3jZzvrj4IqQI8Numg5ktZ7Xq9_EdTNkPFAFctk3T7iX_wVRuWB-26mXKOhId89dTjI0h4XZE7sA-EpngU9SVszx7O7qYAl6b7_J8AO8Is9zvdrguYXLLDIShQ2nwH9FYJfC8EObiczUnm_cAGLR_7LDnG5NxdiY6dWK0HB47UYgMvGA_DQNt0i9yrGJoMlr7GzbslEWsFNyMAoQ">
 </div>
 <!-- Item 3 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="2" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuD-iy6cvv1T4YInxYv7A5j-pHfq-N006wkSc8_y55IFUeo8JxIedLWf3dOzNFnFdbYNX0pzlyk7T8mmTBWk_4Je5hRxZGIeFFSfJ3OL3YPjIG9p5BpzEQFjsDgsJdhY_d72SR-nirKGn0lm4zXviZSUjnMMRUEwZmDgVGYBXBNbTNnDm4VHSbL2goPcspjJVBViogsblpSSy1cWSTBEMrmT3G-TDAEbNrx2WLLkdoFHGmXuVt4_ED-2dg', '3D Orbit #03 · Lò Sưởi Quý Tộc', 'Khoảnh khắc bên lò sưởi cổ điển quý tộc đậm chất vương giả.')">
-<img alt="Bên lò sưởi cổ điển quý tộc" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-iy6cvv1T4YInxYv7A5j-pHfq-N006wkSc8_y55IFUeo8JxIedLWf3dOzNFnFdbYNX0pzlyk7T8mmTBWk_4Je5hRxZGIeFFSfJ3OL3YPjIG9p5BpzEQFjsDgsJdhY_d72SR-nirKGn0lm4zXviZSUjnMMRUEwZmDgVGYBXBNbTNnDm4VHSbL2goPcspjJVBViogsblpSSy1cWSTBEMrmT3G-TDAEbNrx2WLLkdoFHGmXuVt4_ED-2dg">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="2" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuD-iy6cvv1T4YInxYv7A5j-pHfq-N006wkSc8_y55IFUeo8JxIedLWf3dOzNFnFdbYNX0pzlyk7T8mmTBWk_4Je5hRxZGIeFFSfJ3OL3YPjIG9p5BpzEQFjsDgsJdhY_d72SR-nirKGn0lm4zXviZSUjnMMRUEwZmDgVGYBXBNbTNnDm4VHSbL2goPcspjJVBViogsblpSSy1cWSTBEMrmT3G-TDAEbNrx2WLLkdoFHGmXuVt4_ED-2dg', '3D Orbit #03 · Lò Sưởi Quý Tộc', 'Khoảnh khắc bên lò sưởi cổ điển quý tộc đậm chất vương giả.')" style="--i: 2; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-iy6cvv1T4YInxYv7A5j-pHfq-N006wkSc8_y55IFUeo8JxIedLWf3dOzNFnFdbYNX0pzlyk7T8mmTBWk_4Je5hRxZGIeFFSfJ3OL3YPjIG9p5BpzEQFjsDgsJdhY_d72SR-nirKGn0lm4zXviZSUjnMMRUEwZmDgVGYBXBNbTNnDm4VHSbL2goPcspjJVBViogsblpSSy1cWSTBEMrmT3G-TDAEbNrx2WLLkdoFHGmXuVt4_ED-2dg');">
+<img alt="Bên lò sưởi cổ điển quý tộc" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-iy6cvv1T4YInxYv7A5j-pHfq-N006wkSc8_y55IFUeo8JxIedLWf3dOzNFnFdbYNX0pzlyk7T8mmTBWk_4Je5hRxZGIeFFSfJ3OL3YPjIG9p5BpzEQFjsDgsJdhY_d72SR-nirKGn0lm4zXviZSUjnMMRUEwZmDgVGYBXBNbTNnDm4VHSbL2goPcspjJVBViogsblpSSy1cWSTBEMrmT3G-TDAEbNrx2WLLkdoFHGmXuVt4_ED-2dg">
 </div>
 <!-- Item 4 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="3" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBkPjgkMl-a2UWG9D4exYNd3HhPGdGX1vNj5REt9_7_fxrI-0Ql7usZGykS0Wn8pv1uzOKxqndBgfYuePVDhRsaYsOo6HNM4F9RNuNsrZOk9xuwd4KXPEvYTkvZUeGz3HWXQjDEmn3Wvn_-xnO5VWh5DkchV5CepURghnoBA46ncU4Vq7TnCv7VKRTV6h6H9rOCuE6PeizU2pLdhsUdPQ4Vx94AA0rej4mqHZ98oA2bKAbD9oOA3x6BOQ', '3D Orbit #04 · Bàn Tiệc Ngọt Ngào', 'Bàn tiệc sinh nhật bánh kem hoa hồng rực rỡ sắc xuân.')">
-<img alt="Bàn tiệc sinh nhật bánh kem hoa hồng" class="w-full h-full object-cover object-[center_30%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkPjgkMl-a2UWG9D4exYNd3HhPGdGX1vNj5REt9_7_fxrI-0Ql7usZGykS0Wn8pv1uzOKxqndBgfYuePVDhRsaYsOo6HNM4F9RNuNsrZOk9xuwd4KXPEvYTkvZUeGz3HWXQjDEmn3Wvn_-xnO5VWh5DkchV5CepURghnoBA46ncU4Vq7TnCv7VKRTV6h6H9rOCuE6PeizU2pLdhsUdPQ4Vx94AA0rej4mqHZ98oA2bKAbD9oOA3x6BOQ">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="3" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBkPjgkMl-a2UWG9D4exYNd3HhPGdGX1vNj5REt9_7_fxrI-0Ql7usZGykS0Wn8pv1uzOKxqndBgfYuePVDhRsaYsOo6HNM4F9RNuNsrZOk9xuwd4KXPEvYTkvZUeGz3HWXQjDEmn3Wvn_-xnO5VWh5DkchV5CepURghnoBA46ncU4Vq7TnCv7VKRTV6h6H9rOCuE6PeizU2pLdhsUdPQ4Vx94AA0rej4mqHZ98oA2bKAbD9oOA3x6BOQ', '3D Orbit #04 · Bàn Tiệc Ngọt Ngào', 'Bàn tiệc sinh nhật bánh kem hoa hồng rực rỡ sắc xuân.')" style="--i: 3; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkPjgkMl-a2UWG9D4exYNd3HhPGdGX1vNj5REt9_7_fxrI-0Ql7usZGykS0Wn8pv1uzOKxqndBgfYuePVDhRsaYsOo6HNM4F9RNuNsrZOk9xuwd4KXPEvYTkvZUeGz3HWXQjDEmn3Wvn_-xnO5VWh5DkchV5CepURghnoBA46ncU4Vq7TnCv7VKRTV6h6H9rOCuE6PeizU2pLdhsUdPQ4Vx94AA0rej4mqHZ98oA2bKAbD9oOA3x6BOQ');">
+<img alt="Bàn tiệc sinh nhật bánh kem hoa hồng" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkPjgkMl-a2UWG9D4exYNd3HhPGdGX1vNj5REt9_7_fxrI-0Ql7usZGykS0Wn8pv1uzOKxqndBgfYuePVDhRsaYsOo6HNM4F9RNuNsrZOk9xuwd4KXPEvYTkvZUeGz3HWXQjDEmn3Wvn_-xnO5VWh5DkchV5CepURghnoBA46ncU4Vq7TnCv7VKRTV6h6H9rOCuE6PeizU2pLdhsUdPQ4Vx94AA0rej4mqHZ98oA2bKAbD9oOA3x6BOQ">
 </div>
 <!-- Item 5 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="4" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCKF2dw7JmzaKGJYVIa6WTJ9GwQlH5fz00KOsbcJt3bKcT4NML3PiKkIYxMgcYNrd7CeBDUbYp00QFdnvgLaQZpzquRueJ9X_27yxz-yOWkBQBBJg6PBOcdVxpAZwklSbeLCPldU0UkOIsi43Um2rpIJU1e_8Y2viiNmlZ9D5epj3P_8of7fd5oyxQvshUzsIsyPrF0Oqwrcl2h7PugaZ6Fw-XrKweJdK0D6DRBEj0U8HWeECSFgg990A', '3D Orbit #05 · Cổng Gỗ Quán Cảm', 'Cổng gỗ quán Cảm thanh lịch, tĩnh lặng và mộc mạc.')">
-<img alt="Cổng gỗ quán Cảm thanh lịch" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKF2dw7JmzaKGJYVIa6WTJ9GwQlH5fz00KOsbcJt3bKcT4NML3PiKkIYxMgcYNrd7CeBDUbYp00QFdnvgLaQZpzquRueJ9X_27yxz-yOWkBQBBJg6PBOcdVxpAZwklSbeLCPldU0UkOIsi43Um2rpIJU1e_8Y2viiNmlZ9D5epj3P_8of7fd5oyxQvshUzsIsyPrF0Oqwrcl2h7PugaZ6Fw-XrKweJdK0D6DRBEj0U8HWeECSFgg990A">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="4" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCKF2dw7JmzaKGJYVIa6WTJ9GwQlH5fz00KOsbcJt3bKcT4NML3PiKkIYxMgcYNrd7CeBDUbYp00QFdnvgLaQZpzquRueJ9X_27yxz-yOWkBQBBJg6PBOcdVxpAZwklSbeLCPldU0UkOIsi43Um2rpIJU1e_8Y2viiNmlZ9D5epj3P_8of7fd5oyxQvshUzsIsyPrF0Oqwrcl2h7PugaZ6Fw-XrKweJdK0D6DRBEj0U8HWeECSFgg990A', '3D Orbit #05 · Cổng Gỗ Quán Cảm', 'Cổng gỗ quán Cảm thanh lịch, tĩnh lặng và mộc mạc.')" style="--i: 4; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCKF2dw7JmzaKGJYVIa6WTJ9GwQlH5fz00KOsbcJt3bKcT4NML3PiKkIYxMgcYNrd7CeBDUbYp00QFdnvgLaQZpzquRueJ9X_27yxz-yOWkBQBBJg6PBOcdVxpAZwklSbeLCPldU0UkOIsi43Um2rpIJU1e_8Y2viiNmlZ9D5epj3P_8of7fd5oyxQvshUzsIsyPrF0Oqwrcl2h7PugaZ6Fw-XrKweJdK0D6DRBEj0U8HWeECSFgg990A');">
+<img alt="Cổng gỗ quán Cảm thanh lịch" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKF2dw7JmzaKGJYVIa6WTJ9GwQlH5fz00KOsbcJt3bKcT4NML3PiKkIYxMgcYNrd7CeBDUbYp00QFdnvgLaQZpzquRueJ9X_27yxz-yOWkBQBBJg6PBOcdVxpAZwklSbeLCPldU0UkOIsi43Um2rpIJU1e_8Y2viiNmlZ9D5epj3P_8of7fd5oyxQvshUzsIsyPrF0Oqwrcl2h7PugaZ6Fw-XrKweJdK0D6DRBEj0U8HWeECSFgg990A">
 </div>
 <!-- Item 6 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="5" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuB1Ux1nRf5nA3EKnR1_W1P1NnGm7_r2EZ-suUKFe6DHtqgTLbTRo8zTBXqX3dDnIunULkwCXCfc_zcdsIfz3JZKeDwqrVc3M1vEUKaIEUZYJZX5PlCKbUjAlodSeViB55ZTVyGhZiS0L6jIxGPBE0L458qHZNkYJU494Avdaap7T5Ryj_BwygpFXLTC6ft1RoEBiw4gZphDG5asAR9vS-K3lPSunyZk5wxuSGRtd3-baWz1tuuCg-lUYw', '3D Orbit #06 · Ban Công Xanh Ngát', 'Góc ban công gỗ xanh mát mắt hòa cùng thiên nhiên trong lành.')">
-<img alt="Ban công gỗ xanh mát mắt" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1Ux1nRf5nA3EKnR1_W1P1NnGm7_r2EZ-suUKFe6DHtqgTLbTRo8zTBXqX3dDnIunULkwCXCfc_zcdsIfz3JZKeDwqrVc3M1vEUKaIEUZYJZX5PlCKbUjAlodSeViB55ZTVyGhZiS0L6jIxGPBE0L458qHZNkYJU494Avdaap7T5Ryj_BwygpFXLTC6ft1RoEBiw4gZphDG5asAR9vS-K3lPSunyZk5wxuSGRtd3-baWz1tuuCg-lUYw">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="5" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuB1Ux1nRf5nA3EKnR1_W1P1NnGm7_r2EZ-suUKFe6DHtqgTLbTRo8zTBXqX3dDnIunULkwCXCfc_zcdsIfz3JZKeDwqrVc3M1vEUKaIEUZYJZX5PlCKbUjAlodSeViB55ZTVyGhZiS0L6jIxGPBE0L458qHZNkYJU494Avdaap7T5Ryj_BwygpFXLTC6ft1RoEBiw4gZphDG5asAR9vS-K3lPSunyZk5wxuSGRtd3-baWz1tuuCg-lUYw', '3D Orbit #06 · Ban Công Xanh Ngát', 'Góc ban công gỗ xanh mát mắt hòa cùng thiên nhiên trong lành.')" style="--i: 5; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB1Ux1nRf5nA3EKnR1_W1P1NnGm7_r2EZ-suUKFe6DHtqgTLbTRo8zTBXqX3dDnIunULkwCXCfc_zcdsIfz3JZKeDwqrVc3M1vEUKaIEUZYJZX5PlCKbUjAlodSeViB55ZTVyGhZiS0L6jIxGPBE0L458qHZNkYJU494Avdaap7T5Ryj_BwygpFXLTC6ft1RoEBiw4gZphDG5asAR9vS-K3lPSunyZk5wxuSGRtd3-baWz1tuuCg-lUYw');">
+<img alt="Ban công gỗ xanh mát mắt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1Ux1nRf5nA3EKnR1_W1P1NnGm7_r2EZ-suUKFe6DHtqgTLbTRo8zTBXqX3dDnIunULkwCXCfc_zcdsIfz3JZKeDwqrVc3M1vEUKaIEUZYJZX5PlCKbUjAlodSeViB55ZTVyGhZiS0L6jIxGPBE0L458qHZNkYJU494Avdaap7T5Ryj_BwygpFXLTC6ft1RoEBiw4gZphDG5asAR9vS-K3lPSunyZk5wxuSGRtd3-baWz1tuuCg-lUYw">
 </div>
 <!-- Item 7 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="6" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCV5gdYvBDJJ3tXRByWUrX2H1PYM_vepXyZxeQFxtkFVvHdbyGJhmKkmNnjNZSbJ-uMeDbwuZKsfrd5ItHlHoHiZyNDXCOlZj6h_cIBxY6G0KrkM512PEoyToniwTkBFUYZ3VayGPZh9aY4BZb0fd7k46a9CKLp1KOMuDK6OXJqQJ5_5b6KN3TqStERmB1nw4ZlSAbLFZrObJTc1ujNb_nB3YduTuLVqgAGYAWvzq1S97UEcvusG0HOkw', '3D Orbit #07 · Góc Ngắm Thảnh Thơi', 'Góc ngắm cảnh thảnh thơi với phong thái thanh tao nhẹ nhàng.')">
-<img alt="Góc ngắm cảnh thảnh thơi" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV5gdYvBDJJ3tXRByWUrX2H1PYM_vepXyZxeQFxtkFVvHdbyGJhmKkmNnjNZSbJ-uMeDbwuZKsfrd5ItHlHoHiZyNDXCOlZj6h_cIBxY6G0KrkM512PEoyToniwTkBFUYZ3VayGPZh9aY4BZb0fd7k46a9CKLp1KOMuDK6OXJqQJ5_5b6KN3TqStERmB1nw4ZlSAbLFZrObJTc1ujNb_nB3YduTuLVqgAGYAWvzq1S97UEcvusG0HOkw">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="6" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCV5gdYvBDJJ3tXRByWUrX2H1PYM_vepXyZxeQFxtkFVvHdbyGJhmKkmNnjNZSbJ-uMeDbwuZKsfrd5ItHlHoHiZyNDXCOlZj6h_cIBxY6G0KrkM512PEoyToniwTkBFUYZ3VayGPZh9aY4BZb0fd7k46a9CKLp1KOMuDK6OXJqQJ5_5b6KN3TqStERmB1nw4ZlSAbLFZrObJTc1ujNb_nB3YduTuLVqgAGYAWvzq1S97UEcvusG0HOkw', '3D Orbit #07 · Góc Ngắm Thảnh Thơi', 'Góc ngắm cảnh thảnh thơi với phong thái thanh tao nhẹ nhàng.')" style="--i: 6; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCV5gdYvBDJJ3tXRByWUrX2H1PYM_vepXyZxeQFxtkFVvHdbyGJhmKkmNnjNZSbJ-uMeDbwuZKsfrd5ItHlHoHiZyNDXCOlZj6h_cIBxY6G0KrkM512PEoyToniwTkBFUYZ3VayGPZh9aY4BZb0fd7k46a9CKLp1KOMuDK6OXJqQJ5_5b6KN3TqStERmB1nw4ZlSAbLFZrObJTc1ujNb_nB3YduTuLVqgAGYAWvzq1S97UEcvusG0HOkw');">
+<img alt="Góc ngắm cảnh thảnh thơi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV5gdYvBDJJ3tXRByWUrX2H1PYM_vepXyZxeQFxtkFVvHdbyGJhmKkmNnjNZSbJ-uMeDbwuZKsfrd5ItHlHoHiZyNDXCOlZj6h_cIBxY6G0KrkM512PEoyToniwTkBFUYZ3VayGPZh9aY4BZb0fd7k46a9CKLp1KOMuDK6OXJqQJ5_5b6KN3TqStERmB1nw4ZlSAbLFZrObJTc1ujNb_nB3YduTuLVqgAGYAWvzq1S97UEcvusG0HOkw">
 </div>
 <!-- Item 8 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="7" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDOiMAqtpcY4ZGJb8BgevLZUXPxWInPDN4BeD4mwTUPtTllHDIKT-YbtZDegHXh3axc0v7qNY4cf643S4pWrWo0cAKRJGX4pqruTYmfnjh3QxOvKmHRH9JKH0Xpayk8slYLj64Wnvnh4iRhXgpVdNSDvTHqbzlEbf9NzjanrY6TyzHIPsM3TWtTQDQJnDq8xWIhlH0c2fsZVTf6wQ4EH4zZogXJjoke5PPPC0piJHVB_G1NffEVuCMVeQ', '3D Orbit #08 · Hoa Giấy Nắng Vàng', 'Cây hoa giấy rực rỡ nắng vàng tô điểm nét đẹp trẻ trung tươi tắn.')">
-<img alt="Cây hoa giấy rực rỡ nắng vàng" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOiMAqtpcY4ZGJb8BgevLZUXPxWInPDN4BeD4mwTUPtTllHDIKT-YbtZDegHXh3axc0v7qNY4cf643S4pWrWo0cAKRJGX4pqruTYmfnjh3QxOvKmHRH9JKH0Xpayk8slYLj64Wnvnh4iRhXgpVdNSDvTHqbzlEbf9NzjanrY6TyzHIPsM3TWtTQDQJnDq8xWIhlH0c2fsZVTf6wQ4EH4zZogXJjoke5PPPC0piJHVB_G1NffEVuCMVeQ">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="7" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDOiMAqtpcY4ZGJb8BgevLZUXPxWInPDN4BeD4mwTUPtTllHDIKT-YbtZDegHXh3axc0v7qNY4cf643S4pWrWo0cAKRJGX4pqruTYmfnjh3QxOvKmHRH9JKH0Xpayk8slYLj64Wnvnh4iRhXgpVdNSDvTHqbzlEbf9NzjanrY6TyzHIPsM3TWtTQDQJnDq8xWIhlH0c2fsZVTf6wQ4EH4zZogXJjoke5PPPC0piJHVB_G1NffEVuCMVeQ', '3D Orbit #08 · Hoa Giấy Nắng Vàng', 'Cây hoa giấy rực rỡ nắng vàng tô điểm nét đẹp trẻ trung tươi tắn.')" style="--i: 7; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOiMAqtpcY4ZGJb8BgevLZUXPxWInPDN4BeD4mwTUPtTllHDIKT-YbtZDegHXh3axc0v7qNY4cf643S4pWrWo0cAKRJGX4pqruTYmfnjh3QxOvKmHRH9JKH0Xpayk8slYLj64Wnvnh4iRhXgpVdNSDvTHqbzlEbf9NzjanrY6TyzHIPsM3TWtTQDQJnDq8xWIhlH0c2fsZVTf6wQ4EH4zZogXJjoke5PPPC0piJHVB_G1NffEVuCMVeQ');">
+<img alt="Cây hoa giấy rực rỡ nắng vàng" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOiMAqtpcY4ZGJb8BgevLZUXPxWInPDN4BeD4mwTUPtTllHDIKT-YbtZDegHXh3axc0v7qNY4cf643S4pWrWo0cAKRJGX4pqruTYmfnjh3QxOvKmHRH9JKH0Xpayk8slYLj64Wnvnh4iRhXgpVdNSDvTHqbzlEbf9NzjanrY6TyzHIPsM3TWtTQDQJnDq8xWIhlH0c2fsZVTf6wQ4EH4zZogXJjoke5PPPC0piJHVB_G1NffEVuCMVeQ">
 </div>
 <!-- Item 9 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="8" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuABiF-yVtTsQyw6dTwh74tiyOlBc-rGlcLH1WqM3RQhBqSy_LhU41YIKLyEDJqvp-WF80l6mbeHnqoGQxRcdiKquVEymHXGxJ-IspuKIoOyRbzjsdl6nyUG-z3fZF5md_5QR-Gq6BBU8rTAKhqeQyP8nvNC2vZOyLyHd0SPg0owRph1rz7uivahNTUdl0yM_-pVaBw7U03_b1EnBngtNowUUwZE4vFCcnMbNjJGe1BO_cl8np18-54LZA', '3D Orbit #09 · Quán Bánh Ngoài Trời', 'Quán bánh cổ điển ngoài trời mang phong cách hoài niệm vintage.')">
-<img alt="Quán bánh cổ điển ngoài trời" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABiF-yVtTsQyw6dTwh74tiyOlBc-rGlcLH1WqM3RQhBqSy_LhU41YIKLyEDJqvp-WF80l6mbeHnqoGQxRcdiKquVEymHXGxJ-IspuKIoOyRbzjsdl6nyUG-z3fZF5md_5QR-Gq6BBU8rTAKhqeQyP8nvNC2vZOyLyHd0SPg0owRph1rz7uivahNTUdl0yM_-pVaBw7U03_b1EnBngtNowUUwZE4vFCcnMbNjJGe1BO_cl8np18-54LZA">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="8" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuABiF-yVtTsQyw6dTwh74tiyOlBc-rGlcLH1WqM3RQhBqSy_LhU41YIKLyEDJqvp-WF80l6mbeHnqoGQxRcdiKquVEymHXGxJ-IspuKIoOyRbzjsdl6nyUG-z3fZF5md_5QR-Gq6BBU8rTAKhqeQyP8nvNC2vZOyLyHd0SPg0owRph1rz7uivahNTUdl0yM_-pVaBw7U03_b1EnBngtNowUUwZE4vFCcnMbNjJGe1BO_cl8np18-54LZA', '3D Orbit #09 · Quán Bánh Ngoài Trời', 'Quán bánh cổ điển ngoài trời mang phong cách hoài niệm vintage.')" style="--i: 8; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABiF-yVtTsQyw6dTwh74tiyOlBc-rGlcLH1WqM3RQhBqSy_LhU41YIKLyEDJqvp-WF80l6mbeHnqoGQxRcdiKquVEymHXGxJ-IspuKIoOyRbzjsdl6nyUG-z3fZF5md_5QR-Gq6BBU8rTAKhqeQyP8nvNC2vZOyLyHd0SPg0owRph1rz7uivahNTUdl0yM_-pVaBw7U03_b1EnBngtNowUUwZE4vFCcnMbNjJGe1BO_cl8np18-54LZA');">
+<img alt="Quán bánh cổ điển ngoài trời" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABiF-yVtTsQyw6dTwh74tiyOlBc-rGlcLH1WqM3RQhBqSy_LhU41YIKLyEDJqvp-WF80l6mbeHnqoGQxRcdiKquVEymHXGxJ-IspuKIoOyRbzjsdl6nyUG-z3fZF5md_5QR-Gq6BBU8rTAKhqeQyP8nvNC2vZOyLyHd0SPg0owRph1rz7uivahNTUdl0yM_-pVaBw7U03_b1EnBngtNowUUwZE4vFCcnMbNjJGe1BO_cl8np18-54LZA">
 </div>
 <!-- Item 10 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="9" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAw30vokln_vZGdnVo3VWesqwePfEJX5riW9pCoWcfQZZfV_omEVAHTKAmQUKCDyzGcYpbZ499zt8ecdvNCNKhzCOv46l0rMkeivRwPqS4JNelSM-ziD5uUn26jddXJPxTaV9nB_3HOeOZdIctyIM7sQQ_ivg0IlUD-onzV4HaC2j2jm-yZeLlycguerv-3WnsAMBZEX5az4CYKvxeBySWBgY9q_VbY2R2TEDvC8eMwaH-ftyh4tQbgoA', '3D Orbit #10 · Selfie Dễ Thương', 'Selfie dễ thương trong xe với nụ cười ngọt ngào đốn tim.')">
-<img alt="Selfie dễ thương trong xe" class="w-full h-full object-cover object-[center_20%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw30vokln_vZGdnVo3VWesqwePfEJX5riW9pCoWcfQZZfV_omEVAHTKAmQUKCDyzGcYpbZ499zt8ecdvNCNKhzCOv46l0rMkeivRwPqS4JNelSM-ziD5uUn26jddXJPxTaV9nB_3HOeOZdIctyIM7sQQ_ivg0IlUD-onzV4HaC2j2jm-yZeLlycguerv-3WnsAMBZEX5az4CYKvxeBySWBgY9q_VbY2R2TEDvC8eMwaH-ftyh4tQbgoA">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="9" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAw30vokln_vZGdnVo3VWesqwePfEJX5riW9pCoWcfQZZfV_omEVAHTKAmQUKCDyzGcYpbZ499zt8ecdvNCNKhzCOv46l0rMkeivRwPqS4JNelSM-ziD5uUn26jddXJPxTaV9nB_3HOeOZdIctyIM7sQQ_ivg0IlUD-onzV4HaC2j2jm-yZeLlycguerv-3WnsAMBZEX5az4CYKvxeBySWBgY9q_VbY2R2TEDvC8eMwaH-ftyh4tQbgoA', '3D Orbit #10 · Selfie Dễ Thương', 'Selfie dễ thương trong xe với nụ cười ngọt ngào đốn tim.')" style="--i: 9; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAw30vokln_vZGdnVo3VWesqwePfEJX5riW9pCoWcfQZZfV_omEVAHTKAmQUKCDyzGcYpbZ499zt8ecdvNCNKhzCOv46l0rMkeivRwPqS4JNelSM-ziD5uUn26jddXJPxTaV9nB_3HOeOZdIctyIM7sQQ_ivg0IlUD-onzV4HaC2j2jm-yZeLlycguerv-3WnsAMBZEX5az4CYKvxeBySWBgY9q_VbY2R2TEDvC8eMwaH-ftyh4tQbgoA');">
+<img alt="Selfie dễ thương trong xe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw30vokln_vZGdnVo3VWesqwePfEJX5riW9pCoWcfQZZfV_omEVAHTKAmQUKCDyzGcYpbZ499zt8ecdvNCNKhzCOv46l0rMkeivRwPqS4JNelSM-ziD5uUn26jddXJPxTaV9nB_3HOeOZdIctyIM7sQQ_ivg0IlUD-onzV4HaC2j2jm-yZeLlycguerv-3WnsAMBZEX5az4CYKvxeBySWBgY9q_VbY2R2TEDvC8eMwaH-ftyh4tQbgoA">
 </div>
 <!-- Item 11 -->
-<div class="carousel-item-3d bg-white cursor-pointer" data-index="10" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAg9DnlAG9XNONswgZjqvOBfynpzY-6HIUg2OU-mha8SUCfECVwFaXWHt8nD3DyXY-Ty_YeCszHHfe4AMNyxg7iMDpwM2c6jVfMD4QCUqx7g6G2cUiZH5-CSoRqBv9kZT82-KVbhwfmsHBGzYv3qKyZdDDjVkhu63OcQloFyuS0FdIKylbbb7GuiWfQpcfI0lIzgzlIeTSNR5iyS2Lvr59LJu3Lgo0DtAXB6ogXxntqy3-8-xESeKk6FQ', '3D Orbit #11 · Nụ Cười Giáng Sinh', 'Nụ cười Giáng sinh rạng rỡ đón chào mùa lễ hội an lành hạnh phúc.')">
-<img alt="Nụ cười Giáng sinh rạng rỡ" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg9DnlAG9XNONswgZjqvOBfynpzY-6HIUg2OU-mha8SUCfECVwFaXWHt8nD3DyXY-Ty_YeCszHHfe4AMNyxg7iMDpwM2c6jVfMD4QCUqx7g6G2cUiZH5-CSoRqBv9kZT82-KVbhwfmsHBGzYv3qKyZdDDjVkhu63OcQloFyuS0FdIKylbbb7GuiWfQpcfI0lIzgzlIeTSNR5iyS2Lvr59LJu3Lgo0DtAXB6ogXxntqy3-8-xESeKk6FQ">
+<div class="carousel-item-3d bg-white cursor-pointer" data-index="10" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAg9DnlAG9XNONswgZjqvOBfynpzY-6HIUg2OU-mha8SUCfECVwFaXWHt8nD3DyXY-Ty_YeCszHHfe4AMNyxg7iMDpwM2c6jVfMD4QCUqx7g6G2cUiZH5-CSoRqBv9kZT82-KVbhwfmsHBGzYv3qKyZdDDjVkhu63OcQloFyuS0FdIKylbbb7GuiWfQpcfI0lIzgzlIeTSNR5iyS2Lvr59LJu3Lgo0DtAXB6ogXxntqy3-8-xESeKk6FQ', '3D Orbit #11 · Nụ Cười Giáng Sinh', 'Nụ cười Giáng sinh rạng rỡ đón chào mùa lễ hội an lành hạnh phúc.')" style="--i: 10; --img: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAg9DnlAG9XNONswgZjqvOBfynpzY-6HIUg2OU-mha8SUCfECVwFaXWHt8nD3DyXY-Ty_YeCszHHfe4AMNyxg7iMDpwM2c6jVfMD4QCUqx7g6G2cUiZH5-CSoRqBv9kZT82-KVbhwfmsHBGzYv3qKyZdDDjVkhu63OcQloFyuS0FdIKylbbb7GuiWfQpcfI0lIzgzlIeTSNR5iyS2Lvr59LJu3Lgo0DtAXB6ogXxntqy3-8-xESeKk6FQ');">
+<img alt="Nụ cười Giáng sinh rạng rỡ" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg9DnlAG9XNONswgZjqvOBfynpzY-6HIUg2OU-mha8SUCfECVwFaXWHt8nD3DyXY-Ty_YeCszHHfe4AMNyxg7iMDpwM2c6jVfMD4QCUqx7g6G2cUiZH5-CSoRqBv9kZT82-KVbhwfmsHBGzYv3qKyZdDDjVkhu63OcQloFyuS0FdIKylbbb7GuiWfQpcfI0lIzgzlIeTSNR5iyS2Lvr59LJu3Lgo0DtAXB6ogXxntqy3-8-xESeKk6FQ">
+</div>
+<!-- 3D Reflective Ground Disc -->
+<div aria-hidden="true" class="carousel-ground"></div>
 </div>
 </div>
-<!-- 3D Reflective Ground Floor -->
-<div class="floor-reflection absolute bottom-6 w-[550px] h-[550px] rounded-full pointer-events-none -z-10"></div>
 </div>
 <!-- Interactive 3D Control Bar -->
-<div class="max-w-xl mx-auto mt-10 p-4 rounded-2xl glass-panel flex flex-wrap items-center justify-between gap-4 border border-brand-border shadow-md">
+<div class="max-w-xl mx-auto mt-6 sm:mt-10 p-3.5 sm:p-4 rounded-2xl glass-panel flex flex-wrap items-center justify-center sm:justify-between gap-3 sm:gap-4 border border-brand-border shadow-md">
 <!-- Pause / Resume Toggle -->
 <button class="flex items-center gap-2 px-4 py-2 rounded-full bg-pink-100 hover:bg-pink-200 border border-pink-300 text-xs font-bold uppercase tracking-wider text-brand-darkrose transition-colors shadow-sm" id="toggle-spin-btn">
 <span id="spin-icon">⏸</span>
@@ -1146,41 +1329,63 @@
   }
 </script>
 <script data-purpose="3d-carousel-logic">
-    // Arrange 11 3D items along a circular cylinder track
+    // 3D Ring Carousel Engine — positions driven by responsive CSS variables (--i, --car-radius)
+    const carouselStage = document.getElementById('carousel-stage');
     const cylinder = document.getElementById('cylinder');
-    const items = document.querySelectorAll('.carousel-item-3d');
-    const totalItems = items.length;
-    const radius = 430; // Radius distance for nice spacing in 3D perspective
     let currentAngle = 0;
-    let rotationSpeed = 0.35;
+    let rotationSpeed = 0.28;
     let isSpinning = true;
+    let userPaused = false;
     let direction = 1; // 1 = clockwise, -1 = counterclockwise
-    let animationFrameId = null;
-
-    // Distribute cylinder elements radially
-    items.forEach((item, index) => {
-      const angle = (360 / totalItems) * index;
-      item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
-    });
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartAngle = 0;
+    let dragMoved = false;
 
     // Continuous smooth animation loop
     function animateCarousel() {
-      if (isSpinning) {
+      if (isSpinning && !userPaused && !isDragging) {
         currentAngle += rotationSpeed * direction;
-        cylinder.style.transform = `rotateY(${currentAngle}deg)`;
       }
-      animationFrameId = requestAnimationFrame(animateCarousel);
+      cylinder.style.transform = `rotateY(${currentAngle}deg)`;
+      requestAnimationFrame(animateCarousel);
     }
 
     animateCarousel();
 
+    // Pointer / Touch drag-to-spin support (great on phones!)
+    if (carouselStage) {
+      carouselStage.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        dragMoved = false;
+        dragStartX = e.clientX;
+        dragStartAngle = currentAngle;
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - dragStartX;
+        if (Math.abs(dx) > 6) dragMoved = true;
+        currentAngle = dragStartAngle + dx * 0.35;
+      }, { passive: true });
+
+      window.addEventListener('pointerup', () => {
+        isDragging = false;
+      });
+
+      // Prevent accidental lightbox open right after dragging the ring
+      carouselStage.addEventListener('click', (e) => {
+        if (dragMoved) {
+          e.stopPropagation();
+          e.preventDefault();
+          dragMoved = false;
+        }
+      }, true);
+    }
+
     // Pause when user leaves tab to save CPU
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        isSpinning = false;
-      } else {
-        isSpinning = true;
-      }
+      isSpinning = !document.hidden;
     });
 
     // Carousel Controls Event Handlers
@@ -1191,9 +1396,9 @@
     const speedSlider = document.getElementById('speed-slider');
 
     toggleSpinBtn.addEventListener('click', () => {
-      isSpinning = !isSpinning;
-      spinIcon.textContent = isSpinning ? '⏸' : '▶';
-      spinBtnLabel.textContent = isSpinning ? 'Tạm dừng' : 'Tiếp tục';
+      userPaused = !userPaused;
+      spinIcon.textContent = userPaused ? '▶' : '⏸';
+      spinBtnLabel.textContent = userPaused ? 'Tiếp tục' : 'Tạm dừng';
     });
 
     reverseDirBtn.addEventListener('click', () => {
@@ -1201,7 +1406,7 @@
     });
 
     speedSlider.addEventListener('input', (e) => {
-      rotationSpeed = parseFloat(e.target.value) * 0.1;
+      rotationSpeed = parseFloat(e.target.value) * 0.08;
     });
   </script>
 <script data-purpose="lightbox-logic">
