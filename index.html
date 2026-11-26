@@ -2,10 +2,10 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>NGOC HIEN · ThanhPhat Visual Archive</title>
-<!-- Google Fonts: Cormorant Garamond, Gwendolyn & Plus Jakarta Sans -->
+<!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Gwendolyn:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <!-- Tailwind CSS CDN with plugins -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
@@ -30,7 +30,7 @@
           },
           fontFamily: {
             serif: ['"Cormorant Garamond"', 'serif'],
-            script: ['"Gwendolyn"', 'cursive'],
+            script: ['"Bemdayni"', 'cursive'],
             sans: ['"Plus Jakarta Sans"', 'sans-serif']
           }
         }
@@ -39,6 +39,14 @@
   </script>
 <!-- BEGIN: Custom Balletcore CSS Styles -->
 <style data-purpose="ambient-decor">
+    @font-face {
+      font-family: 'Bemdayni';
+      src: url('bemdayni.otf') format('opentype');
+      font-weight: 400 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
     body {
       background: linear-gradient(180deg, #FFF7FA 0%, #FDF2F8 20%, #FCE7F3 50%, #FFF0F5 80%, #FDF2F8 100%);
       color: #831843;
@@ -285,14 +293,14 @@
     }
 
     .hero-wordmark {
-      font-family: 'Gwendolyn', cursive;
+      font-family: 'Bemdayni', cursive;
       font-size: clamp(4.2rem, 15vw, 12.5rem);
-      font-weight: 700;
-      line-height: 1.25;
-      letter-spacing: 0.02em;
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: 0.01em;
       text-transform: none;
       text-align: center;
-      padding: 0.2em 1.5rem;
+      padding: 0.35em 1.5rem;
       margin: 0;
       filter: drop-shadow(0 8px 24px rgba(244, 114, 182, 0.32));
       will-change: transform, opacity;
@@ -839,7 +847,7 @@
 <!-- Center Bottom Monogram & Title -->
 <div class="absolute bottom-6 left-6 right-6 text-center">
 <p class="font-serif italic text-pink-200 text-sm mb-1 tracking-wider">Vương miện nhan sắc thế hệ mới</p>
-<h3 class="font-script text-5xl font-bold text-white tracking-normal leading-tight mb-1 drop-shadow-sm">Ngoc Hien</h3>
+<h3 class="font-script text-5xl font-normal text-white tracking-normal leading-snug mb-1 drop-shadow-sm">Ngoc Hien</h3>
 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-xs font-semibold text-brand-darkrose border border-pink-300 hover:bg-white shadow-sm transition-colors">
 <span>🔍 Xem phóng đại chân dung</span>
 </div>
